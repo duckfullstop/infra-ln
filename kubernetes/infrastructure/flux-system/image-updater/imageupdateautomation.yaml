@@ -15,7 +15,7 @@ spec:
     commit:
       author:
         email: fluxcdbot@users.noreply.github.com
-        name: Flux CD
+        name: fluxcdbot
       messageTemplate: |
         Update images
 
