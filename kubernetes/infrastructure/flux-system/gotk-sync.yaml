@@ -12,6 +12,10 @@ spec:
     name: flux-system
   url: ssh://git@github.com/duckfullstop/infra-ln
   ignore: |
-    # there are a few other things we don't need
-    /**/*.txt
-    /**/*.md
+    # exclude all
+    /*
+    # except the k8s manifests
+    !/kubernetes
+    # although there are a few other things we don't need
+    /kubernetes/**/*.txt
+    /kubernetes/**/*.md
