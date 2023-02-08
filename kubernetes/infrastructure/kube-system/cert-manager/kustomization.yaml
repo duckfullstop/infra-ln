@@ -1,0 +1,5 @@
+resources:
+  - ns.yaml
+  - helmrelease.yaml
+  - le-http-clusterissuer.yaml
+  - localca-clusterissuer.yaml
