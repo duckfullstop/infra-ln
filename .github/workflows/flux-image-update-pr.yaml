@@ -15,8 +15,7 @@ jobs:
       name: pull-request
       with:
         destination_branch: "main"
-        pr_title: "🤖 Flux CD image updates ${{ github.ref }}"
-        pr_body: "*Automated PR* beep boop 🤖"
+        pr_title: "🤖 Flux CD image updates"
+        pr_body: "*Automated PR beep boop* 🤖"
         pr_reviewer: "duckfullstop"
-        pr_draft: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
