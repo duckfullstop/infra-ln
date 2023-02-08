@@ -26,5 +26,5 @@ spec:
     push:
       branch: flux-image-updates
   update:
-    path: ./clusters/my-cluster
+    path: ./kubernetes
     strategy: Setters
