@@ -43,6 +43,16 @@ spec:
       labels:
         app: paperless-tika
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                  # Tika requires amd64 for some reason.
+                  - amd64
       containers:
         - name: tika
           image: apache/tika:latest
