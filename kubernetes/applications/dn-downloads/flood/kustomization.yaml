@@ -8,3 +8,4 @@ resources:
   - ingress.yaml
   - pv.yaml
   - service.yaml
+  - secret.yaml
