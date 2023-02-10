@@ -4,7 +4,7 @@ metadata:
   name: infrastructure
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 24h
   path: ./kubernetes/infrastructure
   prune: true
   sourceRef:
@@ -17,7 +17,7 @@ metadata:
   name: applications
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 24h
   path: ./kubernetes/applications
   prune: true
   sourceRef:
