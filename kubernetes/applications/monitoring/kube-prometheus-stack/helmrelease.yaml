@@ -76,6 +76,18 @@ spec:
     prometheus:
       enabled: true
       prometheusSpec:
+        podMonitorNamespaceSelector:
+          any: true
+        podMonitorSelector: {}
+        podMonitorSelectorNilUsesHelmValues: false
+        ruleNamespaceSelector:
+          any: true
+        ruleSelector: {}
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorNamespaceSelector:
+          any: true
+        serviceMonitorSelector: {}
+        serviceMonitorSelectorNilUsesHelmValues: false
         storageSpec:
           volumeClaimTemplate:
             spec:
@@ -99,32 +111,19 @@ spec:
           - hosts:
               - prometheus.net.theleachfamily.me.uk
             secretName: "alertmanager-cert"
-      prometheusOperator:
-        namespaces: 
-          releaseNamespace: true
-          additional:
-            - cert-manager
-            - dn-downloads
-            - dn-games
-            - flux-system
-            - identity-system
-            - kube-system
-            - ln-ads
-            - ln-data
-            - ln-database
-            - ln-home
-            - ln-media
-            - ln-owntracks
-        prometheusSpec:
-          podMonitorNamespaceSelector:
-            any: true
-          podMonitorSelector: {}
-          podMonitorSelectorNilUsesHelmValues: false
-          ruleNamespaceSelector:
-            any: true
-          ruleSelector: {}
-          ruleSelectorNilUsesHelmValues: false
-          serviceMonitorNamespaceSelector:
-            any: true
-          serviceMonitorSelector: {}
-          serviceMonitorSelectorNilUsesHelmValues: false
+    prometheusOperator:
+      namespaces: 
+        releaseNamespace: true
+        additional:
+          - cert-manager
+          - dn-downloads
+          - dn-games
+          - flux-system
+          - identity-system
+          - kube-system
+          - ln-ads
+          - ln-data
+          - ln-database
+          - ln-home
+          - ln-media
+          - ln-owntracks
