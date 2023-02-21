@@ -1,11 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 namespace: ln-ads
+
 resources:
-- ns.yaml
-- secret.yaml
-- readsb
-- adsbexchange
-- flightaware
-- flightradar24
-- tar1090
+- deployment.yaml
+- ingress.yaml
+- service.yaml
