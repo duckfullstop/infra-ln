@@ -11,5 +11,6 @@ resources:
 - deployment-tar1090.yaml
 - pvc.yaml
 - service.yaml
+- servicemonitor.yaml
 - secret.yaml
 - ingress.yaml
