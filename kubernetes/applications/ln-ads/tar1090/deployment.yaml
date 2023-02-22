@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: tar1090
-  replicas: 0 # Not currently working, segfaults at readsb/api.c#1713 :(
+  replicas: 0 # Not currently working, segfaults at readsb/api.c#1713 :(
   template:
     metadata:
       labels:
@@ -48,8 +48,6 @@ spec:
             value: "adsbexchange"
           - name: MLATPORT
             value: "30105"
-          - name: READSB_EXTRA_ARGS
-            value: "--devel=apiThreads,1"
           livenessProbe:
             exec:
               command:
