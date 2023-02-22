@@ -15,5 +15,8 @@ spec:
   - name: beast
     port: 30005
     targetPort: beast
+  - name: beast-reduce
+    port: 30105
+    targetPort: beast-reduce
   selector:
     app: readsb

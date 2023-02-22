@@ -29,6 +29,9 @@ spec:
           - containerPort: 30005
             protocol: TCP
             name: beast
+          - containerPort: 30105
+            protocol: TCP
+            name: beast-reduce
           resources:
             requests:
               memory: "50Mi"
@@ -43,7 +46,7 @@ spec:
             procMount: Default
           env:
           - name: DISABLE_WEBAPP
-            value: "true"
+            value: "false"
           - name: DISABLE_PERFORMANCE_GRAPHS
             value: "true"
           - name: ENABLE_PROMETHEUS # Listens on :9273/metrics by default
@@ -80,11 +83,17 @@ spec:
             value: "true"
           - name: READSB_NET_ENABLE
             value: "true"
+          - name: READSB_NET_REDUCE_OUT_PORT
+            value: "30105"
           volumeMounts:
           - name: usb-ads-b
             mountPath: /dev/bus/usb
           - name: readsb-autogain
             mountPath: /run/autogain
+          - name: run
+            mountPath: /run/readsb
+          - name: varlog
+            mountPath: /var/log
           livenessProbe:
             exec:
               command:
@@ -96,7 +105,7 @@ spec:
             exec:
               command:
                 - /scripts/healthcheck.sh
-            initialDelaySeconds: 60
+            initialDelaySeconds: 15
             periodSeconds: 10
             failureThreshold: 30
             timeoutSeconds: 30
@@ -108,3 +117,9 @@ spec:
       - name: readsb-autogain
         persistentVolumeClaim:
           claimName: readsb-autogain
+      - name: run
+        emptyDir:
+          medium: "Memory"
+          sizeLimit: 64M
+      - name: varlog
+        emptyDir: {}
