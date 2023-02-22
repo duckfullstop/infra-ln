@@ -22,6 +22,9 @@ spec:
           - containerPort: 80
             protocol: TCP
             name: http
+          - containerPort: 30105
+            protocol: TCP
+            name: mlat
           resources:
             requests:
               memory: "50Mi"
@@ -36,6 +39,10 @@ spec:
             value: "30005"
           - name: TZ
             value: "Europe/London"
+          - name: ALLOW_MLAT
+            value: "yes"
+          - name: MLAT_RESULTS
+            value: "yes"
           - name: RECEIVER_TYPE
             value: "relay"
           - name: FEEDER_ID

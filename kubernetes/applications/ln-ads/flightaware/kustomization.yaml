@@ -5,3 +5,4 @@ namespace: ln-ads
 
 resources:
 - deployment.yaml
+- service.yaml
