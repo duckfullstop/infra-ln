@@ -27,6 +27,32 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: plex-media-video
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: "manual"
+  volumeName: "vault-media-video"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-media-music
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: "manual"
+  volumeName: "vault-media-music"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: plex-config
 spec:
   resources:

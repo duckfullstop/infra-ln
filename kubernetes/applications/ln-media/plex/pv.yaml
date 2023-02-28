@@ -47,6 +47,52 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  name: vault-media-video
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  local:
+    path: "/mnt/vault/media/video"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - nagoya
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vault-media-music
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  local:
+    path: "/mnt/vault/media/music"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - nagoya
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
   name: plex-config
   labels:
     type: local
