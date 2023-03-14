@@ -6,6 +6,8 @@ resources:
 - bitnami.yaml
 - coredns.yaml
 - goauthentik.yaml
+- grafana.yaml
+- influx.yaml
 - itzg.yaml
 - jaeger.yaml
 - jetstack.yaml
