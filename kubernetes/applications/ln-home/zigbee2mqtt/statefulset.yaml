@@ -29,11 +29,11 @@ spec:
             requests:
               memory: "50Mi"
               cpu: "50m"
-              duck.moe/radio-zigbee: "1"
+              dev.duck.moe/radio-zigbee: "1"
             limits:
               memory: "200Mi"
               cpu: "1"
-              duck.moe/radio-zigbee: "1"
+              dev.duck.moe/radio-zigbee: "1"
           securityContext:
             privileged: true
             procMount: Default

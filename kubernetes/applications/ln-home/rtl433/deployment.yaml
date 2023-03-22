@@ -26,11 +26,11 @@ spec:
             requests:
               memory: "50Mi"
               cpu: "50m"
-              duck.moe/radio-433mhz: "1"
+              dev.duck.moe/radio-433mhz: "1"
             limits:
               memory: "200Mi"
               cpu: "100m"
-              duck.moe/radio-433mhz: "1"
+              dev.duck.moe/radio-433mhz: "1"
           securityContext:
             privileged: true
             procMount: Default
