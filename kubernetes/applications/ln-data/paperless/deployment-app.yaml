@@ -22,10 +22,10 @@ spec:
             name: http
           resources:
             requests:
-              memory: "50Mi"
+              memory: "100Mi"
               cpu: "10m"
             limits:
-              memory: "500Mi"
+              memory: "2Gi"
               cpu: "1"
           env:
           - name: PAPERLESS_REDIS
@@ -50,6 +50,8 @@ spec:
             value: "http://paperless-gotenberg.ln-data.svc.cluster.local:3000"
           - name: PAPERLESS_TIKA_ENDPOINT
             value: "http://paperless-tika.ln-data.svc.cluster.local:9998"
+          - name: PAPERLESS_URL
+            value: "https://paperless.net.theleachfamily.me.uk"
           - name: PAPERLESS_SECRET_KEY
             valueFrom:
               secretKeyRef:
