@@ -70,6 +70,10 @@ spec:
             mountPath: /data/media/video
           - name: data-media-music
             mountPath: /data/media/music
+          - name: data-mediavault-music
+            mountPath: /data/mediavault/music
+          - name: data-mediavault-video
+            mountPath: /data/mediavault/video
       volumes:
       - name: dev-dri
         hostPath:
@@ -92,3 +96,9 @@ spec:
       - name: data-media-music
         persistentVolumeClaim:
           claimName: plex-media-music
+      - name: data-mediavault-video
+        persistentVolumeClaim:
+          claimName: plex-mediavault-video
+      - name: data-mediavault-music
+        persistentVolumeClaim:
+          claimName: plex-mediavault-music
