@@ -20,3 +20,6 @@ spec:
       serviceAccount: "prometheus-k8s"
       serviceMonitor:
         enabled: true
+    speaker:
+      frr:
+        enabled: true
