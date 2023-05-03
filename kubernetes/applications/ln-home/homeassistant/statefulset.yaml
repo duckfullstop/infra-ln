@@ -19,7 +19,7 @@ spec:
         command: ['sh', '-c', 'until nc -zv mosquitto.ln-database.svc 1883; do echo waiting for back-end; sleep 2; done;']
       containers:
       - name: ha
-        image: ghcr.io/home-assistant/home-assistant:2023.4.6 # {"$imagepolicy": "flux-system:homeassistant"}
+        image: ghcr.io/home-assistant/home-assistant:2023.5.0 # {"$imagepolicy": "flux-system:homeassistant"}
         resources:
           requests:
             memory: "500Mi"
