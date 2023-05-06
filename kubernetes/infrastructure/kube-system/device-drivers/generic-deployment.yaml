@@ -42,10 +42,10 @@ spec:
         resources:
           requests:
             cpu: 50m
-            memory: 10Mi
+            memory: 30Mi
           limits:
-            cpu: 50m
-            memory: 10Mi
+            cpu: 100m
+            memory: 30Mi
         ports:
         - containerPort: 8080
           name: http
