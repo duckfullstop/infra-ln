@@ -22,13 +22,13 @@ spec:
       containers:
         - name: evcc
           image: ghcr.io/duckfullstop/evcc-hacky:latest
-          # resources:
-          #  requests:
-          #    memory: "50Mi"
-          #    cpu: "10m"
-          #  limits:
-          #    memory: "1Gi"
-          #    cpu: "2"
+          resources:
+           requests:
+             memory: "50Mi"
+             cpu: "10m"
+           limits:
+             memory: "250Mi"
+             cpu: "100m"
           ports:
           - containerPort: 7070
             protocol: TCP
