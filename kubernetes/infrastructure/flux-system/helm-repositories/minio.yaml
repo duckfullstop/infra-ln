@@ -1,9 +1,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: grafana
+  name: minio
   namespace: flux-system
 spec:
-  interval: 36h
-  url: https://grafana.github.io/helm-charts 
+  interval: 48h
+  url: https://charts.min.io/
   timeout: 3m

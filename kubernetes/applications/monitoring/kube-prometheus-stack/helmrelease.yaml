@@ -76,10 +76,15 @@ spec:
     prometheus:
       enabled: true
       prometheusSpec:
+        externalLabels: 
+          cluster_environment: leachnet
         podMonitorNamespaceSelector:
           any: true
         podMonitorSelector: {}
         podMonitorSelectorNilUsesHelmValues: false
+        # remoteWrite:
+        #   - url: "http://mimir-nginx.monitoring.svc.cluster.local/api/v1/push"
+        retention: 7d
         ruleNamespaceSelector:
           any: true
         ruleSelector: {}
@@ -97,6 +102,15 @@ spec:
                 requests:
                   storage: 15Gi
               volumeName: "prometheus-pv"
+        thanos:
+          objectStorageConfig: 
+            key: thanos.config
+            name: thanos-store-config
+      thanosService: 
+        enabled: true
+      thanosServiceMonitor:
+        enabled: true
+        interval: 5s
       podDisruptionBudget:
         enabled: true
       ingress:
@@ -112,6 +126,11 @@ spec:
               - prometheus.net.theleachfamily.me.uk
             secretName: "alertmanager-cert"
     prometheusOperator:
+      thanosImage:
+        registry: quay.io
+        repository: thanos/thanos
+        version: v0.30.2
+        tag: v0.30.2
       namespaces: 
         releaseNamespace: true
         additional:

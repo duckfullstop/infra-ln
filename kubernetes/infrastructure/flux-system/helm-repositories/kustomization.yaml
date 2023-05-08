@@ -15,8 +15,10 @@ resources:
 - k8s-at-home.yaml
 - metallb.yaml
 - metrics-server.yaml
+- minio.yaml
 - nextcloud.yaml
 - openldap.yaml
 - prometheus-community.yaml
 - sealed-secrets.yaml
+- thanos.yaml
 - traefik.yaml
