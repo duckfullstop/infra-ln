@@ -24,10 +24,10 @@ spec:
             memory: '64Mi'
           limits:
             cpu: '250m'
-            memory: '256Mi'
+            memory: '1Gi'
         args:
         - "query"
-        - "--log.level=debug"
+        - "--log.level=info"
         - "--query.replica-label=prometheus_replica"
         - "--store=kube-prometheus-stack-thanos-discovery.monitoring.svc.cluster.local:10901"
         ports:

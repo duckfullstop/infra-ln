@@ -32,7 +32,7 @@ spec:
         - "--objstore.config-file=/config/thanos.config"
         - "--log.level=info"
         - "--retention.resolution-raw=7d"
-        - "--retention.resolution-5m=100d"
+        - "--retention.resolution-5m=30d"
         - "--retention.resolution-1h=2y"
         - "--consistency-delay=15m"
         - "--wait"
