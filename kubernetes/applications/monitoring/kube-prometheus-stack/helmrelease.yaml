@@ -73,6 +73,9 @@ spec:
           - hosts:
               - grafana.net.theleachfamily.me.uk
             secretName: "grafana-cert"
+      persistence:
+        enabled: true
+        existingClaim: grafana-pvc
     prometheus:
       enabled: true
       prometheusSpec:
