@@ -5,7 +5,6 @@ resources:
 - ns.yaml
 - secret.yaml
 - readsb
-- adsbexchange
 - flightaware
 - flightradar24
 - tar1090
