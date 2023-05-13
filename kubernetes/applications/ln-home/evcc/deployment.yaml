@@ -27,8 +27,8 @@ spec:
              memory: "50Mi"
              cpu: "10m"
            limits:
-             memory: "250Mi"
-             cpu: "100m"
+             memory: "500Mi"
+             cpu: "200m"
           ports:
           - containerPort: 7070
             protocol: TCP
