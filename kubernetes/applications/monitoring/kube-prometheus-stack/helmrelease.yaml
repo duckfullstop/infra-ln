@@ -39,6 +39,16 @@ spec:
               - alertmanager.prometheus.net.theleachfamily.me.uk
             secretName: "alertmanager-cert"
     grafana:
+      additionalDataSources:
+        - name: Thanos
+          uid: thanos
+          type: prometheus
+          jsonData:
+            prometheusType: Thanos
+            prometheusVersion: 0.30.2
+          url: http://thanos-query.monitoring.svc.cluster.local:9090
+          editable: false
+          isDefault: true
       enabled: true
       extraSecretMounts:
         - name: secrets
@@ -76,6 +86,9 @@ spec:
       persistence:
         enabled: true
         existingClaim: grafana-pvc
+      sidecar:
+        datasources:
+          isDefaultDatasource: false
     prometheus:
       enabled: true
       prometheusSpec:
