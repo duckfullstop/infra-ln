@@ -36,7 +36,10 @@ spec:
     metrics:
       prometheus:
         entryPoint: metrics
-      serviceMonitor:
+        serviceMonitor:
+          jobLabel: traefik
+        service:
+          enabled: true
     providers:
       kubernetesCRD:
         enabled: true
