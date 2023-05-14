@@ -19,4 +19,7 @@ spec:
     crds: CreateReplace
   values:
     installCRDs: true
-    
+    prometheus:
+      enabled: true
+      servicemonitor:
+        enabled: true
