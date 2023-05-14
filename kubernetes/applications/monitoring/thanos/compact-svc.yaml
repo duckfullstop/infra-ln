@@ -11,20 +11,3 @@ spec:
   ports:
     - port: 10902
       name: http
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: thanos-compactor
-  namespace: monitoring
-  labels:
-    release: prom-op
-spec:
-  jobLabel: thanos
-  endpoints:
-    - port: http
-      path: /metrics
-      interval: 30s
-  selector:
-    matchLabels:
-      app: thanos-compactor
