@@ -6,4 +6,5 @@ resources:
 - query.yaml
 - query-svc.yaml
 - store.yaml
+- store-svc.yaml
 - store-servicemonitor.yaml

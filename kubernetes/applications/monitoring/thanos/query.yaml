@@ -29,7 +29,8 @@ spec:
         - "query"
         - "--log.level=info"
         - "--query.replica-label=prometheus_replica"
-        - "--store=kube-prometheus-stack-thanos-discovery.monitoring.svc.cluster.local:10901"
+        - "--endpoint=dnssrv+_grpc._tcp.kube-prometheus-stack-thanos-discovery.monitoring.svc.cluster.local"
+        - "--endpoint=dnssrv+_grpc._tcp.thanos-store.monitoring.svc.cluster.local"
         ports:
         - name: http
           containerPort: 10902
