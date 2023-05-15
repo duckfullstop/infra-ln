@@ -13,4 +13,4 @@ spec:
       interval: 30s
   selector:
     matchLabels:
-      app: thanos-compactor
+      app: thanos-compact
