@@ -12,17 +12,12 @@ spec:
         kind: HelmRepository
         name: bitnami-charts
         namespace: flux-system
-  valuesFrom:
-    - kind: Secret
-      name: postgres
-      valuesKey: auth-postgresPassword
-      targetPath: auth.postgresPassword
-      optional: false
   values:
     image:
       tag: 14
     auth:
       database: "postgresql"
+      existingSecret: "postgres"
     primary:
       persistence:
         existingClaim: "postgres-data"
