@@ -59,9 +59,11 @@ spec:
       grafana.ini:
         server:
           root_url: https://grafana.net.theleachfamily.me.uk
-        #auth.basic:
-        #  enabled: false
-        #  disable_login_form: true
+        auth.basic:
+          enabled: false
+          disable_login_form: true
+        auth:
+          oauth_allow_insecure_email_lookup: "true"
         auth.generic_oauth:
           name: leachnet.
           enabled: true
