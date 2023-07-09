@@ -5,5 +5,5 @@ resources:
 - deployment.yaml
 - ingress.yaml
 - pvc.yaml
-- secret-plain.yaml
+- secret.yaml
 - service.yaml
