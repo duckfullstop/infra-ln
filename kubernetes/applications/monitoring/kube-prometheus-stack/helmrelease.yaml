@@ -74,6 +74,8 @@ spec:
           token_url: https://auth.theleachfamily.me.uk/application/o/token/
           api_url: https://auth.theleachfamily.me.uk/application/o/userinfo/
           role_attribute_path: contains(groups[*], 'Number 10 Superop') && 'Admin' ||  contains(groups[*], 'Number 10 Operator') && 'Editor' || 'Viewer'
+        feature_toggles:
+          enable: "nestedFolders publicDashboards correlations"
       ingress:
         enabled: true
         annotations:
