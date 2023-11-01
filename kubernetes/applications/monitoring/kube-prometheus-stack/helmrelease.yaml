@@ -45,7 +45,7 @@ spec:
           type: prometheus
           jsonData:
             prometheusType: Thanos
-            prometheusVersion: 0.30.2
+            prometheusVersion: 0.32.5
           url: http://thanos-query.monitoring.svc.cluster.local:9090
           editable: false
           isDefault: true
@@ -149,8 +149,8 @@ spec:
       thanosImage:
         registry: quay.io
         repository: thanos/thanos
-        version: v0.30.2
-        tag: v0.30.2
+        version: v0.32.5
+        tag: v0.32.5
       namespaces: 
         releaseNamespace: true
         additional:

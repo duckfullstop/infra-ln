@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: thanos-query
-        image: "quay.io/thanos/thanos:v0.30.2"
+        image: "quay.io/thanos/thanos:v0.32.5"
         resources:
           requests:
             cpu: '100m'
