@@ -126,8 +126,10 @@ spec:
           objectStorageConfig: 
             key: thanos.config
             name: thanos-store-config
-      thanosService: 
+      thanosServiceExternal: 
         enabled: true
+        type: ClusterIP
+        nodePort: ""
       thanosServiceMonitor:
         enabled: true
         interval: 5s
