@@ -116,20 +116,19 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: "manual"
+              # storageClassName: manual
               accessModes: ["ReadWriteOnce"]
               resources:
                 requests:
                   storage: 15Gi
               volumeName: "prometheus-pv"
         thanos:
-          objectStorageConfig: 
-            key: thanos.config
-            name: thanos-store-config
-      thanosServiceExternal: 
+          objectStorageConfig:
+            existingSecret: 
+              key: thanos.config
+              name: thanos-store-config
+      thanosService:
         enabled: true
-        type: ClusterIP
-        nodePort: ""
       thanosServiceMonitor:
         enabled: true
         interval: 5s
@@ -151,7 +150,7 @@ spec:
       thanosImage:
         registry: quay.io
         repository: thanos/thanos
-        version: v0.32.5
+        # version: v0.32.5
         tag: v0.32.5
       namespaces: 
         releaseNamespace: true
