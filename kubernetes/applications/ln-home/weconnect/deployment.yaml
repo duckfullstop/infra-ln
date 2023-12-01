@@ -19,7 +19,7 @@ spec:
           command: ['sh', '-c', 'until nc -zv mosquitto.ln-database.svc 1883; do echo waiting for mosquitto; sleep 2; done;']
       containers:
         - name: weconnect-mqtt
-          image: ghcr.io/tillsteinbach/weconnect-mqtt:0.45.1
+          image: ghcr.io/tillsteinbach/weconnect-mqtt:0.48.3
           env:
             - name: TZ
               value: "Europe/London"
