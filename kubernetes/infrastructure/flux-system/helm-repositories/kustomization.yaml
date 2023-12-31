@@ -20,5 +20,5 @@ resources:
 - openldap.yaml
 - prometheus-community.yaml
 - sealed-secrets.yaml
-- thanos.yaml
 - traefik.yaml
+- vaultwarden.yaml
