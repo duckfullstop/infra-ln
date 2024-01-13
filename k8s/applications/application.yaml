@@ -17,3 +17,21 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: services
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    name: leachnet
+  project: services
+  source:
+    repoURL: 'https://github.com/duckfullstop/infra-ln/'
+    path: k8s/applications/services
+    targetRevision: main
+  syncPolicy:
+    automated:
+      selfHeal: true

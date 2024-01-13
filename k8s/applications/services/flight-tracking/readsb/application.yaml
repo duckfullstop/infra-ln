@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: readsb
+  namespace: argocd
+spec:
+  project: services
+  source:
+    repoURL: 'https://github.com/duckfullstop/infra-ln/'
+    path: k8s/applications/applications/services/flight-tracking/readsb/manifests
+    targetRevision: main
+  destination:
+    namespace: flight-tracking
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true

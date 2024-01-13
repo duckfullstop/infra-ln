@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: readsb
+  labels:
+    app: readsb
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+  - name: metrics
+    port: 9273
+    targetPort: metrics
+  - name: beast
+    port: 30005
+    targetPort: beast
+  - name: beast-reduce
+    port: 30105
+    targetPort: beast-reduce
+  selector:
+    app: readsb

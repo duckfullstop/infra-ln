@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: readsb
+  name: readsb
+spec:
+  endpoints:
+  - interval: 60s
+    port: metrics
+    path: "/metrics"
+  namespaceSelector:
+    matchNames:
+    - flight-tracking
+  selector:
+    matchLabels:
+      app: readsb
