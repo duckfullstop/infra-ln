@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   project: infrastructure
-  source:
+  sources:
     - repoURL: https://metallb.github.io/metallb
       targetRevision: v0.13.2
       helm:

@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   project: infrastructure
-  source:
+  sources:
     - repoURL: 'https://democratic-csi.github.io/charts/'
       chart: democratic-csi
       targetRevision: 0.14.5
@@ -36,47 +36,9 @@ spec:
           driver:
             config:
               driver: freenas-nfs
-              instance_id:
-              httpConnection:
-                protocol: http
-                host: 10.0.1.10
-                port: 80
-                apiKey: 1-HY4SbJfpctMoX2OehrK5f0LDp49QZtxBJAGFaRNz5xM0zRNiUpVHAnHQcLLuYvQc
-                username: root
-                allowInsecure: true
-                apiVersion: 2
-              sshConnection:
-                host: 10.0.1.10
-                port: 22
-                username: k8s
-                privateKey: |
-                  -----BEGIN OPENSSH PRIVATE KEY-----
-                  b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
-                  QyNTUxOQAAACAV5uo63vGeQEq2dK/3v4fuIdJ3aeEmhffWMosHj21V5wAAAJjPhqj4z4ao
-                  +AAAAAtzc2gtZWQyNTUxOQAAACAV5uo63vGeQEq2dK/3v4fuIdJ3aeEmhffWMosHj21V5w
-                  AAAEBNhZ21pzQYH/JayX7lvORsxHihBX8qzYv+XUHX4qdLfxXm6jre8Z5ASrZ0r/e/h+4h
-                  0ndp4SaF99YyiwePbVXnAAAAE3Jvb3RAdmF1bHQubGVhY2huZXQBAg==
-                  -----END OPENSSH PRIVATE KEY-----
-              zfs:
-                # Make sure to use the storage pool that was created previously
-                datasetParentName: quicvault/k8s/nfs/volumes
-                detachedSnapshotsDatasetParentName: quicvault/k8s/nfs/snapshots
-                datasetEnableQuotas: true
-                datasetEnableReservation: false
-                datasetPermissionsMode: "0777"
-                datasetPermissionsUser: 1050
-                datasetPermissionsGroup: 1000
-                cli:
-                  sudoEnabled: true
-              nfs:
-                shareHost: 10.0.1.10
-                shareAlldirs: false
-                shareAllowedHosts: []
-                shareAllowedNetworks: []
-                shareMaprootUser: k8s
-                shareMaprootGroup: wheel
-                shareMapallUser: ""
-                shareMapallGroup: ""
+              existingConfigSecret: democratic-csi
+              # Backfilled from secret
+
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
       path: k8s/applications/infrastructure/democratic-csi/manifests
       targetRevision: main

@@ -1,7 +1,7 @@
 resources:
   - project.yaml
   - argocd
-  - autnentik
+  - authentik
   - cert-manager
   - coredns
   - democratic-csi
