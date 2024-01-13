@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tar1090
-  namespace: ln-ads
+  namespace: flight-tracking
 spec:
   selector:
     matchLabels:
