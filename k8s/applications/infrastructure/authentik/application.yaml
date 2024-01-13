@@ -6,7 +6,7 @@ metadata:
 spec:
   project: infrastructure
   sources:
-    - repoURL: 'https://charts.goauthentik.io/'
+    - repoURL: 'https://charts.goauthentik.io'
       targetRevision: 1.2.*
       chart: authentik-remote-cluster
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
