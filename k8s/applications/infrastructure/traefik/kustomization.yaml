@@ -1,3 +1,2 @@
 resources:
   - application.yaml
-  - ingress.yaml
