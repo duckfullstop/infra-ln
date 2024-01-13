@@ -29,11 +29,35 @@ spec:
                   type: oidc
                   id: ducknet
               url: 'https://argo.net.theleachfamily.me.uk'
+            params:
+              server.insecure: "true"
             rbac:
               policy.csv: |
                 g, Number 10 Superop, role:admin
             secret:
               createSecret: false
+          server:
+            certificate:
+              enabled: true
+              secretName: argocd-server-tls
+              domain: argo.net.theleachfamily.me.uk
+              issuer:
+                group: "cert-manager.io"
+                kind: "ClusterIssuer"
+                name: "letsencrypt-http-prod"
+          ingress:
+            enabled: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            ingressClassName: traefik
+            hosts:
+              - argo.net.theleachfamily.me.uk
+            tls:
+              - hosts:
+                  - argo.net.theleachfamily.me.uk
+                secretName: argocd-server-tls
+            # -- Uses `server.service.servicePortHttps` instead of `server.service.servicePortHttp`
+            https: false
 
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
       path: k8s/applications/infrastructure/argocd/manifests
