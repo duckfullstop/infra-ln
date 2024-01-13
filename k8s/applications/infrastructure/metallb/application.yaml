@@ -25,8 +25,9 @@ spec:
       path: k8s/applications/infrastructure/metallb/manifests
       targetRevision: main
   destination:
-    namespace: kube-system
+    namespace: metallb-system
     name: leachnet
   syncPolicy:
     syncOptions:
+      - CreateNamespace=true
       - ServerSideApply=true
