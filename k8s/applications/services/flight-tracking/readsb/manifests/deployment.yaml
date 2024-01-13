@@ -36,11 +36,11 @@ spec:
             requests:
               memory: "50Mi"
               cpu: "250m"
-              duck.moe/radio-ads: "1"
+              device.duck.moe/radio-ads: "1"
             limits:
               memory: "100Mi"
               cpu: "500m"
-              duck.moe/radio-ads: "1"
+              device.duck.moe/radio-ads: "1"
           securityContext:
             privileged: true
             procMount: Default
