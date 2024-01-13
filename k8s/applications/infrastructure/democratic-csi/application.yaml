@@ -34,9 +34,10 @@ spec:
               controller-expand-secret:
 
           driver:
+           existingConfigSecret: democratic-csi
             config:
               driver: freenas-nfs
-              existingConfigSecret: democratic-csi
+              
               # Backfilled from secret
 
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
