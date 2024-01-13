@@ -14,3 +14,6 @@ spec:
     repoURL: 'https://github.com/duckfullstop/infra-ln/'
     path: k8s/applications/infrastructure
     targetRevision: main
+  syncPolicy:
+    automated:
+      selfHeal: true
