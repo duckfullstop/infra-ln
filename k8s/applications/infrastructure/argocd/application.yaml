@@ -17,7 +17,7 @@ spec:
               dex.config: |
                 connectors:
                 - config:
-                    issuer: http://auth.theleachfamily.me.uk/application/o/ln-argocd/
+                    issuer: https://auth.theleachfamily.me.uk/application/o/ln-argocd/
                     clientID: 3tZX0LULt01gxYFSn8PC62sgltUbPe2tdJPUyf3j
                     clientSecret: $dex.authentik.clientSecret
                     insecureEnableGroups: true
@@ -25,9 +25,9 @@ spec:
                       - openid
                       - profile
                       - email
-                  name: authentik
+                  name: identiduck.
                   type: oidc
-                  id: authentik
+                  id: ducknet
               # url: 'https://argo.net.theleachfamily.me.uk'
             rbac:
               policy.csv: |
