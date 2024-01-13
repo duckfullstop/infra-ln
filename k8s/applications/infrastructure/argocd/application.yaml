@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: infrastructure
+  sources:
+    - repoURL: 'https://argoproj.github.com/argo-helm'
+      targetRevision: 5.52.*
+      chart: argo-cd
+    - repoURL: 'https://github.com/duckfullstop/infra-ln/'
+      path: k8s/applications/infrastructure/argocd/manifests
+      targetRevision: main
+  destination:
+    namespace: argocd
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

@@ -1,0 +1,16 @@
+# This special Application object synchronises all Applications.
+# https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: infrastructure
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: leachnet
+  project: infrastructure
+  source:
+    repoURL: 'https://github.com/duckfullstop/infra-ln/'
+    path: k8s/applications/infrastructure
+    targetRevision: main

@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: coredns
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    repoURL: 'https://coredns.github.io/helm'
+    targetRevision: 1.29.x
+    helm:
+      valuesObject:
+        # prometheus:
+        #   service:
+        #        enabled: true
+        #      monitor:
+        #        enabled: true
+        service:
+          clusterIP: fc00:abc0::254
+    chart: coredns
+  destination:
+    namespace: kube-system
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true

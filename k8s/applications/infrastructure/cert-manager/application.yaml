@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    - repoURL: 'https://charts.jetstack.io'
+      targetRevision: v1.13.x
+      helm:
+        valuesObject:
+          installCRDs: true
+          # prometheus:
+          #   enabled: true
+          #   servicemonitor:
+          #     enabled: true
+      chart: cert-manager
+    - repoURL: 'https://github.com/duckfullstop/infra-ln/'
+      path: k8s/applications/infrastructure/cert-manager/manifests
+      targetRevision: main
+  destination:
+    namespace: cert-manager
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

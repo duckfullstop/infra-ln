@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    - repoURL: https://metallb.github.io/metallb
+      targetRevision: v0.13.2
+      helm:
+        valuesObject:
+          prometheus:
+            namespace: "monitoring"
+            prometheusRule:
+              enabled: true
+            serviceAccount: "prometheus-k8s"
+            serviceMonitor:
+              enabled: true
+          speaker:
+            frr:
+              enabled: true
+    - repoURL: 'https://github.com/duckfullstop/infra-ln/'
+      path: k8s/applications/infrastructure/metallb/manifests
+      targetRevision: main
+  destination:
+    namespace: kube-system
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true

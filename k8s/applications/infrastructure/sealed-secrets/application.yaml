@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sealed-secrets
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    repoURL: https://bitnami-labs.github.io/sealed-secrets
+    targetRevision: 2.x
+    helm:
+      valuesObject:
+        # metrics:
+        #   serviceMonitor:
+        #     enabled: true
+        #   dashboards:
+        #     create: true
+    chart: sealed-secrets
+  destination:
+    namespace: kube-system
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true

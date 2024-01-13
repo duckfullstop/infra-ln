@@ -1,0 +1,1 @@
+Manifests for handling this cluster as an Authentik remote - Authentik itself does **not** run in this cluster.

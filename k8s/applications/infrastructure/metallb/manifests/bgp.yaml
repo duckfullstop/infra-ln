@@ -1,0 +1,38 @@
+apiVersion: metallb.io/v1beta1
+kind: BFDProfile
+metadata:
+  name: leachnet-bfd
+  namespace: metallb-system
+spec:
+  receiveInterval: 380
+  transmitInterval: 270
+---
+apiVersion: metallb.io/v1beta2
+kind: BGPPeer
+metadata:
+  name: leachnet-v4
+  namespace: metallb-system
+spec:
+  myASN: 64520
+  peerASN: 64512
+  peerAddress: 10.0.0.254
+  routerID: 10.0.0.1
+  bfdProfile: leachnet-bfd
+---
+apiVersion: metallb.io/v1beta2
+kind: BGPPeer
+metadata:
+  name: leachnet-v6
+  namespace: metallb-system
+spec:
+  myASN: 64520
+  peerASN: 64512
+  peerAddress: 2a02:8010:61d0:beef:21f:29ff:fe58:9281
+  routerID: 10.0.0.1
+  bfdProfile: leachnet-bfd
+---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: leachnet
+  namespace: metallb-system

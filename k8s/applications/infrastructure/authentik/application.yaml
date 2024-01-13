@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    - repoURL: 'https://charts.goauthentik.io/'
+      targetRevision: 2023.10.*
+      chart: authentik-remote-cluster
+    - repoURL: 'https://github.com/duckfullstop/infra-ln/'
+      path: k8s/applications/infrastructure/authentik/manifests
+      targetRevision: main
+  destination:
+    namespace: identity-system
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

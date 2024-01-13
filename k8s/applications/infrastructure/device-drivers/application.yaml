@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: generic-device-driver
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    repoURL: 'https://github.com/duckfullstop/infra-ln/'
+    path: k8s/applications/infrastructure/device-drivers/manifests
+    targetRevision: main
+  destination:
+    namespace: kube-system
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true

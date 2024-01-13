@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flannel
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    repoURL: 'https://flannel-io.github.io/flannel/'
+    targetRevision: v0.24.x
+    helm:
+      valuesObject:
+        podCidr: 172.18.0.0/16
+        podCidrv6: fc00:abc1::/48
+    chart: flannel
+  destination:
+    namespace: kube-flannel
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

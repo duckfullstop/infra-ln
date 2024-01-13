@@ -1,0 +1,12 @@
+resources:
+  - project.yaml
+  - argocd
+  - autnentik
+  - cert-manager
+  - coredns
+  - democratic-csi
+  - device-drivers
+  - flannel
+  - metallb
+  - sealed-secrets
+  - traefik

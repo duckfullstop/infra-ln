@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-lb
+  namespace: kube-system
+  annotations:
+    metallb.universe.tf/address-pool: internal-services
+    metallb.universe.tf/loadBalancerIPs: 10.1.0.1,2a02:8010:61d0:8888:1337:0000:1:1
+spec:
+  externalTrafficPolicy: Local
+  ipFamilies:
+  - IPv4
+  - IPv6
+  ipFamilyPolicy: PreferDualStack
+  selector:
+    app.kubernetes.io/instance: traefik-kube-system
+    app.kubernetes.io/name: traefik
+  ports:
+  - name: ldaps
+    port: 636
+    protocol: TCP
+    targetPort: ldaps
+  - name: mqtts
+    port: 8883
+    protocol: TCP
+    targetPort: mqtts
+  - name: traefik
+    port: 9000
+    protocol: TCP
+    targetPort: traefik
+  - name: web
+    port: 80
+    protocol: TCP
+    targetPort: web
+  - name: websecure
+    port: 443
+    protocol: TCP
+    targetPort: websecure
+  type: LoadBalancer
