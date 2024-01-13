@@ -7,7 +7,7 @@ spec:
   project: infrastructure
   sources:
     - repoURL: 'https://charts.goauthentik.io/'
-      targetRevision: 2023.10.*
+      targetRevision: 2023.6.*
       chart: authentik-remote-cluster
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
       path: k8s/applications/infrastructure/authentik/manifests

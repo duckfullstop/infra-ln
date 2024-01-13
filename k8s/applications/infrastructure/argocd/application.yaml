@@ -6,7 +6,7 @@ metadata:
 spec:
   project: infrastructure
   sources:
-    - repoURL: 'https://argoproj.github.com/argo-helm'
+    - repoURL: 'https://argoproj.github.io/argo-helm'
       targetRevision: 5.52.*
       chart: argo-cd
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
