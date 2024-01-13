@@ -9,6 +9,29 @@ spec:
     - repoURL: 'https://argoproj.github.io/argo-helm'
       targetRevision: 5.52.*
       chart: argo-cd
+      helm:
+        valuesObject:
+          configs:
+            cm:
+              create: true
+              dex.config: |
+                connectors:
+                - config:
+                    issuer: http://authentik.company/application/o/3tZX0LULt01gxYFSn8PC62sgltUbPe2tdJPUyf3j/
+                    clientID: <client ID from the Provider above>
+                    clientSecret: $dex.authentik.clientSecret
+                    insecureEnableGroups: true
+                    scopes:
+                      - openid
+                      - profile
+                      - email
+                  name: authentik
+                  type: oidc
+                  id: authentik
+              # url: 'https://argo.net.theleachfamily.me.uk'
+            secret:
+              createSecret: false
+
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
       path: k8s/applications/infrastructure/argocd/manifests
       targetRevision: main

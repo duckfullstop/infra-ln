@@ -1,3 +1,2 @@
 resources:
-  - configmap.yaml
   - secret.yaml
