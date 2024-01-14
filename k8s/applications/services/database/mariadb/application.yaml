@@ -27,9 +27,9 @@ spec:
             # secondary.persistence.storageClass: "longhorn-fast"
             # secondary.persistence.size: "10Gi"
           metrics:
-            enabled: "false"
+            enabled: false
             serviceMonitor:
-              enabled: "false"
+              enabled: false
     - repoURL: 'https://github.com/duckfullstop/infra-ln'
       path: k8s/applications/services/database/mariadb/manifests
       targetRevision: main
