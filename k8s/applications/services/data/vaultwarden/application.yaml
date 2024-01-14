@@ -15,6 +15,10 @@ spec:
           invitationOrgName: "leachnet."
           signupsAllowed: false
           signupsVerify: true
+          rocket:
+            address: "::"
+          websocket:
+            address: "::"
           adminToken:
             existingSecret: "vaultwarden"
             existingSecretKey: "admin-token"
