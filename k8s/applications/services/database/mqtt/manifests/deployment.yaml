@@ -50,7 +50,7 @@ spec:
           name: mosquitto-config
       - name: passwd
         secret:
-          secretName: mosquitto-passwd
+          secretName: mosquitto
       - name: certs
         secret:
           secretName: mosquitto-cert

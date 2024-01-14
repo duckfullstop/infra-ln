@@ -6,7 +6,7 @@ metadata:
 spec:
   project: services
   source:
-    repoURL: 'https://github.com/duckfullstop/infra-ln/'
+    repoURL: 'https://github.com/duckfullstop/infra-ln'
     path: k8s/applications/services/database/mqtt/manifests
     targetRevision: main
   destination:

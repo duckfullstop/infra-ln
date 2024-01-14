@@ -27,8 +27,8 @@ spec:
               enabled: false
           postgresqlDatabase: "default"
           fullnameOverride: "postgresql"
-    - repoURL: 'https://github.com/duckfullstop/infra-ln/'
-      path: k8s/applications/services/database/mariadb/manifests
+    - repoURL: 'https://github.com/duckfullstop/infra-ln'
+      path: k8s/applications/services/database/postgresql/manifests
       targetRevision: main
   destination:
     namespace: database
