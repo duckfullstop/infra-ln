@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://charts.bitnami.com/bitnami'
     chart: redis
-    targetRevision: "7.2.*"
+    targetRevision: "18.6.*"
     helm:
       valuesObject:
         architecture: "standalone"
