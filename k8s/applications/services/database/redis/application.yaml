@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis
+  namespace: argocd
+spec:
+  project: services
+  source:
+    repoURL: 'https://charts.bitnami.com/bitnami'
+    chart: redis
+    targetRevision: "13.2.*"
+    helm:
+      valuesObject:
+        architecture: "standalone"
+        master:
+          persistence:
+            enabled: true
+            storageClass: "vault-fast-nfs"
+            size: "1Gi"
+        replica:
+          replicaCount: 0
+        # metrics:
+        #  enabled: true
+        #  serviceMonitor:
+        #    enabled: true
+        fullnameOverride: "redis"
+        # auth:
+        #   existingSecret: "redis"
+  destination:
+    namespace: database
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

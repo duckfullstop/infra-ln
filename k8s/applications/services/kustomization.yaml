@@ -1,3 +1,4 @@
 resources:
   - project.yaml
+  - database
   - flight-tracking
