@@ -26,6 +26,8 @@ spec:
             replicaCount: 0
             # secondary.persistence.storageClass: "longhorn-fast"
             # secondary.persistence.size: "10Gi"
+          volumePermissions:
+            enabled: true
           metrics:
             enabled: false
             serviceMonitor:
