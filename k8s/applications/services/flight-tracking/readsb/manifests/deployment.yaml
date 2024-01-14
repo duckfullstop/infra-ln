@@ -95,21 +95,21 @@ spec:
             mountPath: /run/readsb
           - name: varlog
             mountPath: /var/log
-          livenessProbe:
-            exec:
-              command:
-                - /scripts/healthcheck.sh
-            periodSeconds: 60
-            failureThreshold: 3
-            timeoutSeconds: 30
-          startupProbe:
-            exec:
-              command:
-                - /scripts/healthcheck.sh
-            initialDelaySeconds: 15
-            periodSeconds: 10
-            failureThreshold: 30
-            timeoutSeconds: 30
+          # livenessProbe:
+          #   exec:
+          #     command:
+          #       - /scripts/healthcheck.sh
+          #   periodSeconds: 60
+          #   failureThreshold: 3
+          #   timeoutSeconds: 30
+          # startupProbe:
+          #   exec:
+          #     command:
+          #       - /scripts/healthcheck.sh
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 10
+          #   failureThreshold: 30
+          #   timeoutSeconds: 30
       volumes:
       - name: usb-ads-b
         hostPath:

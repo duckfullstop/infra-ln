@@ -49,6 +49,8 @@ spec:
               secretKeyRef:
                 name: ads-b
                 key: FR24_SHARING_KEY
+          - name: BIND_ADDRESS
+            value: "::"
           livenessProbe:
             exec:
               command:
@@ -60,7 +62,7 @@ spec:
             exec:
               command:
                 - /scripts/healthcheck.sh
-            initialDelaySeconds: 60
+            initialDelaySeconds: 240
             periodSeconds: 10
             failureThreshold: 30
             timeoutSeconds: 30
