@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vaultwarden
+  namespace: argocd
+spec:
+  project: services
+  sources:
+    - repoURL: 'https://guerzon.github.io/vaultwarden'
+      chart: vaultwarden
+      targetRevision: "0.19.*"
+      helm:
+        valuesObject:
+          domain: https://bitwarden.theleachfamily.me.uk
+          invitationOrgName: "leachnet."
+          signupsAllowed: false
+          signupsVerify: true
+          adminToken:
+            existingSecret: "vaultwarden"
+            existingSecretKey: "admin-token"
+          smtp:
+            existingSecret: "vaultwarden"
+            from: "bitwarden@theleachfamily.me.uk"
+            host: smtp.sendgrid.net
+            port: "587"
+            security: "starttls"
+            authMechanism: "Login"
+            username:
+              existingSecretKey: "mail-user"
+            password:
+              existingSecretKey: "mail-password"
+          ingress:
+            enabled: true
+            class: "traefik"
+            hostname: bitwarden.theleachfamily.me.uk
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-http-staging
+            pathType: ImplementationSpecific
+            tls: true
+            tlsSecret: "vaultwarden-cert"
+          data:
+            enabled: true
+            name: "vaultwarden-data"
+            size: 1Gi
+            class: "vault-fast-nfs"
+            keepPvc: true
+    - repoURL: 'https://github.com/duckfullstop/infra-ln'
+      path: k8s/applications/services/data/vaultwarden/manifests
+      targetRevision: main
+  destination:
+    namespace: data
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
