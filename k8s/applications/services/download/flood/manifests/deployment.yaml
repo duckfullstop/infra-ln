@@ -29,7 +29,7 @@ spec:
         - name: FLOOD_OPTION_auth
           value: "none"
         - name: FLOOD_OPTION_qburl
-          value: "http://qbittorrent-web.dn-downloads.svc.cluster.local:8080"
+          value: "http://qbittorrent-web.downloads.svc.cluster.local:8080"
         - name: FLOOD_OPTION_qbuser
           valueFrom:
             secretKeyRef:
