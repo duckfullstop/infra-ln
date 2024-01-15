@@ -71,16 +71,16 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: vault-downloads-duck-torrents
+          claimName: qbt-vault-downloads-duck-torrents
       - name: data-downloading
         persistentVolumeClaim:
-          claimName: vault-downloads-duck-torrents-downloading
+          claimName: qbt-vault-downloads-duck-torrents-downloading
       - name: data-complete
         persistentVolumeClaim:
-          claimName: vault-downloads-duck-torrents-complete
+          claimName: qbt-vault-downloads-duck-torrents-complete
       - name: data-complete-deduplicate
         persistentVolumeClaim:
-          claimName: vault-downloads-duck-torrents-complete-deduplicate
+          claimName: qbt-vault-downloads-duck-torrents-complete-deduplicate
       - name: config
         persistentVolumeClaim:
           claimName: flood-config
