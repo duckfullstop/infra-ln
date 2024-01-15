@@ -1,0 +1,55 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio
+  namespace: argocd
+spec:
+  project: infrastructure
+  sources:
+    - repoURL: 'https://charts.min.io/'
+      chart: minio
+      targetRevision: "5.0.*"
+      helm:
+        valuesObject:
+          mode: standalone
+          drivesPerNode: 1
+          replicas: 3
+          pools: 1
+          resources:
+            requests:
+              memory: 2Gi
+          persistence:
+            enabled: true
+            existingClaim: minio-data
+          #metrics:
+          #  serviceMonitor:
+          #    enabled: true
+          ingress:
+            enabled: true
+            hosts:
+              - minio.net.theleachfamily.me.uk
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-http-prod
+            tls:
+              - hosts:
+                - minio.net.theleachfamily.me.uk
+                secretName: minio-cert
+          consoleIngress:
+            enabled: true
+            hosts:
+              - console.minio.net.theleachfamily.me.uk
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-http-prod
+            tls:
+              - hosts:
+                - console.minio.net.theleachfamily.me.uk
+                secretName: minio-console-cert
+    - repoURL: 'https://github.com/duckfullstop/infra-ln/'
+      path: k8s/applications/infrastructure/minio/manifests
+      targetRevision: main
+  destination:
+    namespace: kube-system
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
