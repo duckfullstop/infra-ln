@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: homeautomation
+
+resources:
+- statefulset.yaml
+- service.yaml
+- ingress.yaml
+- secret.yaml
+- pv.yaml
+
+configMapGenerator:
+- name: zigbee2mqtt-config
+  namespace: homeautomation
+  files:
+  - config/configuration.yaml
+- name: custom-converter
+  namespace: homeautomation
+  files:
+  - config/HIVELDSSIREN001.js

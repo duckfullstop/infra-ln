@@ -1,0 +1,9 @@
+resources:
+- deployment.yaml
+- secret.yaml
+
+configMapGenerator:
+- name: rtl433-config
+  namespace: homeautomation
+  files:
+  - config/rtl_433.conf

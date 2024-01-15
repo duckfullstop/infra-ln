@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: home-assistant-matter
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/matter: unconfined
+spec:
+  selector:
+    matchLabels:
+      app: home-assistant
+  serviceName: "home-assistant-matter"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      nodeSelector:
+        # Pinned to worker 1 for reasons of mDNS discoverability. This whole set will be moved to something cleaner at a later date.
+        kubernetes.io/hostname: ln-k8s-wkr-1.leachnet
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: matter
+          image: ghcr.io/home-assistant-libs/python-matter-server:stable
+          securityContext:
+            privileged: true
+          volumeMounts:
+          - name: data
+            mountPath: /data
+          - name: dbus
+            mountPath: /run/dbus
+            readOnly: true
+      volumes:
+        - name: dbus
+          hostPath:
+            path: /run/dbus
+            type: Directory
+        - name: data
+          emptyDir:
+            medium: ""

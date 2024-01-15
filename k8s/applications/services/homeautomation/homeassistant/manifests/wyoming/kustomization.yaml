@@ -1,0 +1,5 @@
+resources:
+- piper-deployment.yaml
+- piper-service.yaml
+- whisper-deployment.yaml
+- whisper-service.yaml

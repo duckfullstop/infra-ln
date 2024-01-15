@@ -1,2 +1,7 @@
 resources:
 - esphome
+- evcc
+- homeassistant
+- rtl433
+- scrypted
+- zigbee2mqtt
