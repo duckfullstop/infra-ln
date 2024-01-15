@@ -37,8 +37,8 @@ spec:
             enabled: true
             class: "traefik"
             hostname: bitwarden.theleachfamily.me.uk
-            annotations:
-              cert-manager.io/cluster-issuer: letsencrypt-http-staging
+            additionalAnnotations:
+              cert-manager.io/cluster-issuer: letsencrypt-http-prod
             pathType: ImplementationSpecific
             tls: true
             tlsSecret: "vaultwarden-cert"
