@@ -2,5 +2,7 @@ resources:
   - project.yaml
   - data
   - database
+  - download
   - flight-tracking
   - homeautomation
+  - owntracks
