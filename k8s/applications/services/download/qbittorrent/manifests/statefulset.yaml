@@ -106,5 +106,5 @@ spec:
       storageClassName: "vault-fast-nfs"
       resources:
         requests:
-          storage: 10Mi
+          storage: 2Gi
   
