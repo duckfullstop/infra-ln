@@ -4,7 +4,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-http-prod
   name: ocpp-ingress
-  namespace: ln-home
+  namespace: homeautomation
 spec:
   rules:
   - host: cs.ocpp.net.theleachfamily.me.uk
