@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qbt-vault-downloads-duck-torrents
+  namespace: download
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: manual
+  volumeName: vault-downloads-duck-torrents
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qbt-vault-downloads-duck-torrents-downloading
+  namespace: download
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: manual
+  volumeName: vault-downloads-duck-torrents-downloading
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qbt-vault-downloads-duck-torrents-complete
+  namespace: download
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: manual
+  volumeName: vault-downloads-duck-torrents-complete
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qbt-vault-downloads-duck-torrents-complete-deduplicate
+  namespace: download
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: manual
+  volumeName: vault-downloads-duck-torrents-complete-deduplicate
