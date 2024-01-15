@@ -16,7 +16,10 @@ spec:
       containers:
         - name: esphome
           image: esphome/esphome:latest
-          # command: ["config/", "dashboard"]
+          args:
+            - dashboard
+            - '--address=::'
+            - /config
           ports:
           - containerPort: 6052
             protocol: TCP
