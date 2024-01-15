@@ -18,7 +18,7 @@ spec:
       initContainers:
       - name: init-wait-for-mqtt
         image: busybox
-        command: ['sh', '-c', 'until nc -zv mqtt.database.svc 1883; do echo waiting for mosquitto; sleep 2; done;']
+        command: ['sh', '-c', 'until nc -zv mosquitto.database.svc 1883; do echo waiting for mosquitto; sleep 2; done;']
       containers:
         - name: rtl433
           image: ghcr.io/hertzg/rtl_433_docker:latest

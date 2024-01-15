@@ -16,7 +16,7 @@ spec:
       initContainers:
       - name: init-wait-for-mqtt
         image: busybox
-        command: ['sh', '-c', 'until nc -zv mqtt.database.svc 1883; do echo waiting for mosquitto; sleep 2; done;']
+        command: ['sh', '-c', 'until nc -zv mosquitto.database.svc 1883; do echo waiting for mosquitto; sleep 2; done;']
       containers:
         - name: z2m
           image: ghcr.io/koenkk/zigbee2mqtt:1.35.0

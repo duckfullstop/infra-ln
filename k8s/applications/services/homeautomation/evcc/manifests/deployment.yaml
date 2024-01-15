@@ -17,7 +17,7 @@ spec:
     spec:
       enableServiceLinks: False
       nodeSelector:
-        kubernetes.io/hostname: nagoya
+        kubernetes.io/hostname: ln-k8s-wkr-1.leachnet
       imagePullSecrets:
          - name: dockerconfigjson-github-com
       containers:
@@ -66,4 +66,4 @@ spec:
           secretName: evcc-config
       - name: persist
         persistentVolumeClaim:
-          claimName: evcc-data
+          claimName: evcc
