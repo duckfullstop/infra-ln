@@ -26,7 +26,7 @@ mqtt:
   base_topic: zigbee2mqtt
   user: '!secret MQTT_USER'
   password: '!secret MQTT_PASS'
-  server: 'mqtt://mosquitto.ln-database.svc.cluster.local:1883'
+  server: 'mqtt://mosquitto.database.svc.cluster.local:1883'
 permit_join: false
 serial:
   port: /dev/ttyUSB0

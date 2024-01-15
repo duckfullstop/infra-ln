@@ -13,6 +13,6 @@ resources:
 
 configMapGenerator:
 - name: mosquitto-config
-  namespace: ln-database
+  namespace: database
   files:
   - config/mosquitto.conf
