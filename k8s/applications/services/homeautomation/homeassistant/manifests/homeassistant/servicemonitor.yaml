@@ -16,7 +16,7 @@ spec:
         name: homeassistant
   namespaceSelector:
     matchNames:
-    - ln-home
+    - homeautomation
   selector:
     matchLabels:
       app: home-assistant
