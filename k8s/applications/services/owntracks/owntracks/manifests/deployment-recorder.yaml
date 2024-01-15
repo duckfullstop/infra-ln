@@ -31,7 +31,7 @@ spec:
         - name: OTR_HOST
           value: "mosquitto.database.svc.cluster.local"
         - name: OTR_HTTPHOST
-          value: "::"
+          value: "[::]"
         - name: OTR_HTTPPREFIX
           value: "https://recorder.owntracks.theleachfamily.me.uk"
         - name: OTR_PORT
