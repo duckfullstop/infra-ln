@@ -8,7 +8,6 @@ resources:
 - service.yaml
 - ingress.yaml
 - secret.yaml
-- pv.yaml
 
 configMapGenerator:
 - name: zigbee2mqtt-config

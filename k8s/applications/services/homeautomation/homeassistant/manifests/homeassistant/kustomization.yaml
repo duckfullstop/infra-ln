@@ -7,4 +7,3 @@ resources:
 # - servicemonitor.yaml
 - ingress.yaml
 - secret.yaml
-- pv.yaml
