@@ -13,8 +13,6 @@ spec:
       labels:
         app: vigor
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: nagoya
       containers:
         - name: exporter
           image: docker.io/duckfullstop/vigor-exporter
