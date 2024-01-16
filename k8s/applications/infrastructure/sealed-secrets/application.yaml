@@ -10,11 +10,11 @@ spec:
     targetRevision: 2.x
     helm:
       valuesObject:
-        # metrics:
-        #   serviceMonitor:
-        #     enabled: true
-        #   dashboards:
-        #     create: true
+        metrics:
+          serviceMonitor:
+            enabled: true
+          dashboards:
+            create: true
     chart: sealed-secrets
   destination:
     namespace: kube-system

@@ -11,13 +11,13 @@ spec:
       targetRevision: v0.13.*
       helm:
         valuesObject:
-          # prometheus:
-          #   namespace: "monitoring"
-          #   prometheusRule:
-          #     enabled: true
-          #   serviceAccount: "prometheus-k8s"
-          #   serviceMonitor:
-          #     enabled: true
+          prometheus:
+            namespace: "monitoring"
+            prometheusRule:
+              enabled: true
+            serviceAccount: "prometheus-k8s"
+            serviceMonitor:
+              enabled: true
           speaker:
             frr:
               enabled: true

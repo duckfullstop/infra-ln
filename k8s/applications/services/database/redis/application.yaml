@@ -19,10 +19,10 @@ spec:
             size: "1Gi"
         replica:
           replicaCount: 0
-        # metrics:
-        #  enabled: true
-        #  serviceMonitor:
-        #    enabled: true
+        metrics:
+         enabled: true
+         serviceMonitor:
+           enabled: true
         fullnameOverride: "redis"
         # auth:
         #   existingSecret: "redis"

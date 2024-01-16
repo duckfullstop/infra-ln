@@ -26,13 +26,13 @@ spec:
               annotations:
                 cert-manager.io/cluster-issuer: letsencrypt-http-prod
                 traefik.ingress.kubernetes.io/router.middlewares: identity-system-ak-outpost-leachnet-proxy-outpost@kubernetescrd
-          # metrics:
-          #   prometheus:
-          #     entryPoint: metrics
-          #     serviceMonitor:
-          #       jobLabel: traefik
-          #     service:
-          #       enabled: true
+          metrics:
+            prometheus:
+              entryPoint: metrics
+              serviceMonitor:
+                jobLabel: traefik
+              service:
+                enabled: true
           providers:
             kubernetesCRD:
               enabled: true

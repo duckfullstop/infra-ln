@@ -2,4 +2,4 @@ resources:
 - deployment.yaml
 - pv.yaml
 - service.yaml
-# - servicemonitor.yaml
+- servicemonitor.yaml

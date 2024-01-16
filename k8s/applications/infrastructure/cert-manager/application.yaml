@@ -11,10 +11,10 @@ spec:
       helm:
         valuesObject:
           installCRDs: true
-          # prometheus:
-          #   enabled: true
-          #   servicemonitor:
-          #     enabled: true
+          prometheus:
+            enabled: true
+            servicemonitor:
+              enabled: true
       chart: cert-manager
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
       path: k8s/applications/infrastructure/cert-manager/manifests

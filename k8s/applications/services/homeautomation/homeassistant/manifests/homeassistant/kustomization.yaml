@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
 - statefulset.yaml
 - service.yaml
-# - servicemonitor.yaml
+- servicemonitor.yaml
 - ingress.yaml
 - ingress-ocpp.yaml
 - secret.yaml
