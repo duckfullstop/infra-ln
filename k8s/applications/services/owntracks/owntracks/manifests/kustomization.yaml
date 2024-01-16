@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+- configmap.yaml
 - deployment-frontend.yaml
 - deployment-recorder.yaml
 - ingress.yaml
@@ -9,9 +10,3 @@ resources:
 - secret.yaml
 - service-frontend.yaml
 - service-recorder.yaml
-
-configMapGenerator:
-- name: owntracks-frontend-config
-  namespace: owntracks
-  files:
-  - config.js

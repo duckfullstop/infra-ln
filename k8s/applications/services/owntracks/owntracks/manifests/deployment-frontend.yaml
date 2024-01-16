@@ -50,4 +50,4 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: owntracks-frontend-config
+            name: frontend-cfg
