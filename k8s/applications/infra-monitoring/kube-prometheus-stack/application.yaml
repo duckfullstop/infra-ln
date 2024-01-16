@@ -28,6 +28,8 @@ spec:
                     - alertmanager.prometheus.net.theleachfamily.me.uk
                   secretName: "alertmanager-cert"
           grafana:
+            # https://github.com/grafana/helm-charts/issues/2899
+            assertNoLeakedSecrets: false
             additionalDataSources:
               - name: Thanos
                 uid: thanos
