@@ -48,11 +48,11 @@ spec:
               memory: "150Mi"
               cpu: "300m"
             limits:
-              memory: "500Mi"
+              memory: "2Gi"
               cpu: "2"
           env:
-          # - name: DOCKER_MODS
-          #   value: arafatamim/linuxserver-io-mod-vuetorrent
+          - name: DOCKER_MODS
+            value: arafatamim/linuxserver-io-mod-vuetorrent
           - name: TZ
             value: "UTC"
           - name: WEBUI_PORT

@@ -9,6 +9,7 @@ spec:
     targetPort: web
   selector:
     app: qbittorrent
+  ipFamilyPolicy: PreferDualStack
 ---
 apiVersion: v1
 kind: Service

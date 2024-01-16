@@ -23,6 +23,9 @@ spec:
             limits:
               memory: "200Mi"
               cpu: "500m"
+        args:
+          # FLOOD_OPTION_host doesn't work for some reason
+          - "--host=::"
         env:
         - name: FLOOD_OPTION_port
           value: "3001"
