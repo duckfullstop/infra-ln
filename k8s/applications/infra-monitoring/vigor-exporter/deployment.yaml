@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vigor-exporter
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: vigor
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vigor
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: nagoya
+      containers:
+        - name: exporter
+          image: docker.io/duckfullstop/vigor-exporter
+          args:
+            - -host
+            - "192.168.2.1"
+            - -username
+            - admin
+            - -password
+            - admin
+          ports:
+          - containerPort: 9103
+            protocol: TCP
+            name: metrics
+          resources:
+            requests:
+              memory: "10Mi"
+              cpu: "50m"
+            limits:
+              memory: "25Mi"
+              cpu: "100m"

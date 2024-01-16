@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: thanos-store
+  namespace: monitoring
+  labels:
+    app: thanos-store
+spec:
+  replicas: 1
+  serviceName: thanos-store
+  selector:
+    matchLabels:
+      app: thanos-store
+  template:
+    metadata:
+      labels:
+        app: thanos-store
+    spec:
+      containers:
+      - name: thanos-store
+        image: "quay.io/thanos/thanos:v0.32.5"
+        resources:
+          limits:
+            cpu: 1
+            memory: 1Gi
+          requests:
+            cpu: 500m
+            memory: 1Gi
+        args:
+        - "store"
+        - "--data-dir=/var/thanos/store"
+        - "--objstore.config-file=/config/thanos.config"
+        - "--log.level=info"
+        - "--index-cache-size=256MB"
+        - "--chunk-pool-size=256MB"
+        - "--store.grpc.series-max-concurrency=30"
+        ports:
+        - name: http
+          containerPort: 10902
+        - name: grpc
+          containerPort: 10901
+        - name: cluster
+          containerPort: 10900
+        volumeMounts:
+        - mountPath: /var/thanos/store
+          name: data
+        - mountPath: /config/
+          name: thanos-config
+      volumes:
+      - name: data
+        emptyDir: {}
+      - name: thanos-config
+        secret:
+          secretName: thanos-store-config
+  # volumeClaimTemplates:
+  # - metadata:
+  #     name: thanos-store-storage
+  #   spec:
+  #     accessModes: [ "ReadWriteOnce" ]
+  #     resources:
+  #       requests:
+  #         storage: 10Gi
