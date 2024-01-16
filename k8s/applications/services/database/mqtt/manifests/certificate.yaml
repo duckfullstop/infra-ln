@@ -10,5 +10,5 @@ spec:
     - mqtt.net.theleachfamily.me.uk
   secretName: mosquitto-cert
   issuerRef:
-    name: letsencrypt-http-staging
+    name: letsencrypt-http-prod
     kind: ClusterIssuer
