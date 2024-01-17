@@ -14,8 +14,6 @@ spec:
             enabled: true
             kind: DaemonSet
           experimental:
-            http3:
-              enabled: false
             # kubernetesGateway:
             #  enabled: true
             #  gateway:
@@ -39,6 +37,8 @@ spec:
               allowCrossNamespace: true
             kubernetesIngress:
               enabled: true
+              publishedService:
+                enabled: true
           ports:
             web:
               port: 80
