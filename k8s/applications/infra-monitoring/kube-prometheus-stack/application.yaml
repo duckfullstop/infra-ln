@@ -93,15 +93,21 @@ spec:
             prometheusSpec:
               externalLabels: 
                 cluster_environment: leachnet
-              podMonitorNamespaceSelector: {}
+              podMonitorNamespaceSelector:
+                any: true
               podMonitorSelector: {}
+              podMonitorSelectorNilUsesHelmValues: false
               # remoteWrite:
               #   - url: "http://mimir-nginx.monitoring.svc.cluster.local/api/v1/push"
               retention: 7d
-              ruleNamespaceSelector: {}
+              ruleNamespaceSelector:
+                any: true
               ruleSelector: {}
-              serviceMonitorNamespaceSelector: {}
+              ruleSelectorNilUsesHelmValues: false
+              serviceMonitorNamespaceSelector:
+                any: true
               serviceMonitorSelector: {}
+              serviceMonitorSelectorNilUsesHelmValues: false
               storageSpec:
                 volumeClaimTemplate:
                   spec:
@@ -143,18 +149,18 @@ spec:
             namespaces: 
               releaseNamespace: true
               additional:
+                - argocd
                 - cert-manager
-                - dn-downloads
-                - dn-games
-                - flux-system
+                - data
+                - database
+                - download
+                - flight-tracking
+                - homeautomation
                 - identity-system
+                - kube-flannel
                 - kube-system
-                - ln-ads
-                - ln-data
-                - ln-database
-                - ln-home
-                - ln-media
-                - ln-owntracks
+                - metallb-system
+                - owntracks
 
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
       path: k8s/applications/infra-monitoring/kube-prometheus-stack/manifests
