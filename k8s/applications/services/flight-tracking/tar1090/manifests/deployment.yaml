@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: tar1090
-  replicas: 0 # Not currently working, segfaults at readsb/api.c#1713 :(
+  replicas: 1
   template:
     metadata:
       labels:
@@ -44,22 +44,22 @@ spec:
               secretKeyRef:
                 name: ads-b
                 key: SITE_LONGITUDE
-          - name: MLATHOST
-            value: "adsbexchange"
-          - name: MLATPORT
-            value: "30105"
+          # - name: MLATHOST
+          #   value: "adsbexchange"
+          # - name: MLATPORT
+          #   value: "30105"
           livenessProbe:
             exec:
               command:
-                - /scripts/healthcheck.sh
+                - /healthcheck.sh
             periodSeconds: 60
             failureThreshold: 3
             timeoutSeconds: 30
           startupProbe:
             exec:
               command:
-                - /scripts/healthcheck.sh
-            initialDelaySeconds: 60
+                - /healthcheck.sh
+            initialDelaySeconds: 10
             periodSeconds: 10
             failureThreshold: 30
             timeoutSeconds: 30

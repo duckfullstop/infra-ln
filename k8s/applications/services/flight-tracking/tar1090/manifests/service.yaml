@@ -3,9 +3,13 @@ kind: Service
 metadata:
   name: tar1090
 spec:
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
   ports:
   - name: http
     port: 80
     targetPort: http
   selector:
     app: tar1090
+  
