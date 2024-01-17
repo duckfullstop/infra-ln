@@ -93,21 +93,15 @@ spec:
             prometheusSpec:
               externalLabels: 
                 cluster_environment: leachnet
-              podMonitorNamespaceSelector:
-                any: true
+              podMonitorNamespaceSelector: {}
               podMonitorSelector: {}
-              podMonitorSelectorNilUsesHelmValues: false
               # remoteWrite:
               #   - url: "http://mimir-nginx.monitoring.svc.cluster.local/api/v1/push"
               retention: 7d
-              ruleNamespaceSelector:
-                any: true
+              ruleNamespaceSelector: {}
               ruleSelector: {}
-              ruleSelectorNilUsesHelmValues: false
-              serviceMonitorNamespaceSelector:
-                any: true
+              serviceMonitorNamespaceSelector: {}
               serviceMonitorSelector: {}
-              serviceMonitorSelectorNilUsesHelmValues: false
               storageSpec:
                 volumeClaimTemplate:
                   spec:
