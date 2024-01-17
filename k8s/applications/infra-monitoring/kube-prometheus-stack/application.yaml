@@ -30,6 +30,8 @@ spec:
                 - hosts:
                     - alertmanager.prometheus.net.theleachfamily.me.uk
                   secretName: "alertmanager-cert"
+          crds:
+            enabled: false
           grafana:
             # https://github.com/grafana/helm-charts/issues/2899
             assertNoLeakedSecrets: false
