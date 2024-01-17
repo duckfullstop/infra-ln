@@ -10,6 +10,9 @@ spec:
       targetRevision: 55.*
       chart: kube-prometheus-stack
       helm:
+        # CRDs in same application causes apply to be too large
+        # https://blog.ediri.io/kube-prometheus-stack-and-argocd-23-how-to-remove-a-workaround
+        skipCrds: true
         valuesObject:
           alertmanager:
             enabled: true
