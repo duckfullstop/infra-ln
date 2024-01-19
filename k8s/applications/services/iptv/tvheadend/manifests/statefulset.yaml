@@ -26,11 +26,9 @@ spec:
             name: rtsp
           resources:
             requests:
-              duck.moe/tuner-dvb-s: "2"
-              duck.moe/tuner-dvb-t: "2"
+              device.duck.moe/tuner-dvb-t: "2"
             limits:
-              duck.moe/tuner-dvb-s: "2"
-              duck.moe/tuner-dvb-t: "2"
+              device.duck.moe/tuner-dvb-t: "2"
           #resources:
           #  requests:
           #    memory: "250Mi"

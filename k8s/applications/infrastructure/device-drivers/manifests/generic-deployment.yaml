@@ -36,6 +36,8 @@ spec:
         - '{"name": "radio-ads", "groups": [{"usb": [{"vendor": "2109", "product": "3431"}]}]}'
         - --device
         - '{"name": "radio-433", "groups": [{"usb": [{"vendor": "0bda", "product": "2838"}]}]}'
+        - --device
+        - '{"name": "tuner-dvb-t", "groups": [{"usb": [{"vendor": "045e", "product": "02d5"}]}]}'
         - --log-level
         - 'debug'
         name: generic-device-plugin
