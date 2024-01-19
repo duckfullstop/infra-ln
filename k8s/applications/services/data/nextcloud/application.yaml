@@ -7,7 +7,7 @@ spec:
   project: services
   sources:
     - repoURL: 'https://nextcloud.github.io/helm/'
-      chart: vaultwarden
+      chart: nextcloud
       targetRevision: "4.5.*"
       helm:
         valuesObject:
