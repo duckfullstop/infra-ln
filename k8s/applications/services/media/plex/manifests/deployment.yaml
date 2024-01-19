@@ -26,9 +26,9 @@ spec:
               containerPort: 32443
           resources:
             requests:
-              dev.duck.moe/dri: "1"
+              device.duck.moe/dri: "1"
             limits:
-              dev.duck.moe/dri: "1"
+              device.duck.moe/dri: "1"
           env:
             - name: TZ
               value: "Europe/London"
