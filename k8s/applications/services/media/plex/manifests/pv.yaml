@@ -93,3 +93,30 @@ spec:
   nfs:
     server: "vault.leachnet"
     path: "/mnt/mediavault/video"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: plex-config
+  labels:
+    type: local
+spec:
+  # unfortunately this PV has to be done with host-local storage
+  # plex doesn't like having its configuration on NFS due to locks / massive performance penalties
+  # and setting up iSCSI is untenable as my volume names are too long for the iSCSI 64-char limit
+  # still, make do and mend
+  storageClassName: manual
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteOnce
+  local:
+    path: "/persist/plex"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - ln-k8s-wkr-1

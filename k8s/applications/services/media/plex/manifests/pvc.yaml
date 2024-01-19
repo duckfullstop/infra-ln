@@ -86,4 +86,7 @@ spec:
       storage: 50Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: "vault-fast-nfs"
+  # unfortunately unable to use NFS for the config directory
+  # see PV for details
+  storageClassName: "manual"
+  volume: "plex-config"
