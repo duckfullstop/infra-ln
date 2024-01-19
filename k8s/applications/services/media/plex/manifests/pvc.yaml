@@ -89,4 +89,4 @@ spec:
   # unfortunately unable to use NFS for the config directory
   # see PV for details
   storageClassName: "manual"
-  volume: "plex-config"
+  volumeName: "plex-config"
