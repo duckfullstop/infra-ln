@@ -1,27 +1,4 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: paperless-data
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
-  local:
-    path: "/mnt/vault/services/paperless"
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - nagoya
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: paperless-data
@@ -31,6 +8,5 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
-  storageClassName: manual
-  volumeName: paperless-data
+      storage: 10Gi
+  storageClassName: vault-fast-nfs
