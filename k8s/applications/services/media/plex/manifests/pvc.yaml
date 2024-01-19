@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-downloads-duck-torrents-complete
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: "manual"
+  volumeName: "nsmedia-vault-downloads-duck-torrents-complete"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-media-pvr
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: "manual"
+  volumeName: "vault-media-pvr"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-media-video
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: "manual"
+  volumeName: "vault-media-video"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-media-music
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: "manual"
+  volumeName: "vault-media-music"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-mediavault-music
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: "manual"
+  volumeName: "mediavault-music"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-mediavault-video
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: "manual"
+  volumeName: "mediavault-video"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-config
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "vault-fast-nfs"

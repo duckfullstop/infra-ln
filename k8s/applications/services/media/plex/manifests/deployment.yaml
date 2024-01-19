@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  namespace: media
+spec:
+  selector:
+    matchLabels:
+      app: plex
+  replicas: 0
+  revisionHistoryLimit: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      containers:
+        - name: plexmediaserver
+          image: plexinc/pms-docker:latest
+          ports:
+            - name: http
+              containerPort: 32400
+            - name: https
+              containerPort: 32443
+          resources:
+            requests:
+              dev.duck.moe/dri: "1"
+            limits:
+              dev.duck.moe/dri: "1"
+          env:
+            - name: TZ
+              value: "Europe/London"
+            - name: HOSTNAME
+              value: "leachnet"
+            - name: PLEX_UID
+              value: "920"
+            - name: PLEX_GID
+              value: "65520"
+            - name: ADVERTISE_IP
+              value: "https://plex.net.theleachfamily.me.uk"
+          readinessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          securityContext:
+            # Required for hardware transcode on /dev/dri
+            privileged: true
+          volumeMounts:
+          - name: config
+            mountPath: /config
+          - name: dev-dri
+            mountPath: /dev/dri
+          - name: transcode
+            mountPath: /transcode
+          - name: data-downloads-duck-torrents-complete
+            mountPath: /data/downloads/duck/torrents/complete
+          - name: data-media-pvr
+            mountPath: /data/media/pvr
+          - name: data-media-video
+            mountPath: /data/media/video
+          - name: data-media-music
+            mountPath: /data/media/music
+          - name: data-mediavault-music
+            mountPath: /data/mediavault/music
+          - name: data-mediavault-video
+            mountPath: /data/mediavault/video
+      volumes:
+      - name: dev-dri
+        hostPath:
+          path: /dev/dri
+          type: Directory
+      - name: config
+        persistentVolumeClaim:
+          claimName: plex-config
+      - name: transcode
+        emptyDir: {}
+      - name: data-downloads-duck-torrents-complete
+        persistentVolumeClaim:
+          claimName: plex-downloads-duck-torrents-complete
+      - name: data-media-pvr
+        persistentVolumeClaim:
+          claimName: plex-media-pvr
+      - name: data-media-video
+        persistentVolumeClaim:
+          claimName: plex-media-video
+      - name: data-media-music
+        persistentVolumeClaim:
+          claimName: plex-media-music
+      - name: data-mediavault-video
+        persistentVolumeClaim:
+          claimName: plex-mediavault-video
+      - name: data-mediavault-music
+        persistentVolumeClaim:
+          claimName: plex-mediavault-music

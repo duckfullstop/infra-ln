@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nsmedia-vault-downloads-duck-torrents-complete
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: "vault.leachnet"
+    path: "/mnt/hypervault/downloads/duck/torrents/complete"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vault-media-pvr
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: "vault.leachnet"
+    path: "/mnt/hypervault/media/pvr"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vault-media-video
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: "vault.leachnet"
+    path: "/mnt/hypervault/media/video"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vault-media-music
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: "vault.leachnet"
+    path: "/mnt/hypervault/media/video"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mediavault-music
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: "vault.leachnet"
+    path: "/mnt/mediavault/music"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mediavault-video
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: "vault.leachnet"
+    path: "/mnt/mediavault/video"
