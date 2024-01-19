@@ -1,9 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
-metadata:
-  name: vaultwarden
-  namespace: flux-system
-spec:
-  interval: 10m
-  url: https://guerzon.github.io/vaultwarden
-  timeout: 1m
