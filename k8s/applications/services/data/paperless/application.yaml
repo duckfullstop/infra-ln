@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: paperless
+  namespace: argocd
+spec:
+  project: services
+  source:
+    repoURL: 'https://github.com/duckfullstop/infra-ln'
+    path: k8s/applications/services/data/paperless/manifests
+    targetRevision: main
+  destination:
+    namespace: data
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

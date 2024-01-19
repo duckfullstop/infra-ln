@@ -1,0 +1,7 @@
+resources:
+- deployment-app.yaml
+- deployment-backing.yaml
+- service.yaml
+- ingress.yaml
+- pvc.yaml
+- secret.yaml

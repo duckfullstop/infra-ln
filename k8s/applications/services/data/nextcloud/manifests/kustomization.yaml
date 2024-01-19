@@ -1,0 +1,4 @@
+resources:
+- pv.yaml
+- pvc.yaml
+- secret.yaml
