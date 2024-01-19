@@ -1,6 +1,6 @@
 resources:
+- ingress.yaml
 - statefulset.yaml
 - secret.yaml
 - service.yaml
-- pv.yaml
-- ingress.yaml
+
