@@ -119,4 +119,4 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - ln-k8s-wkr-1
+          - ln-k8s-wkr-1.leachnet
