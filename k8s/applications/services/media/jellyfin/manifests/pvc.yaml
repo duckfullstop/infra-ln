@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyfin-config
+spec:
+  resources:
+    requests:
+      storage: 50Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "vault-fast-nfs"
