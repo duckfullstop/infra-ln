@@ -83,7 +83,7 @@ metadata:
 spec:
   resources:
     requests:
-      storage: 1Gi
+      storage: 50Gi
   accessModes:
     - ReadWriteOnce
   storageClassName: "vault-fast-nfs"
