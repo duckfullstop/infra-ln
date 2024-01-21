@@ -28,7 +28,7 @@ spec:
                   name: identiduck.
                   type: oidc
                   id: ducknet
-              url: 'https://argo.net.theleachfamily.me.uk'
+              url: 'https://argocd.net.theleachfamily.me.uk'
             params:
               server.insecure: "true"
             rbac:
