@@ -19,7 +19,7 @@ spec:
                 - config:
                     issuer: https://auth.theleachfamily.me.uk/application/o/ln-argocd/
                     clientID: 3tZX0LULt01gxYFSn8PC62sgltUbPe2tdJPUyf3j
-                    clientSecret: $dex.authentik.clientSecret
+                    clientSecret: $oidc.identiduck.clientSecret
                     insecureEnableGroups: true
                     scopes:
                       - openid
