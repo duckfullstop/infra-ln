@@ -40,6 +40,17 @@ spec:
           volumeMounts:
           - name: scrypted-data
             mountPath: /server/volume
+          - name: dbus
+            mountPath: /var/run/dbus
+          - name: host-avahi-daemon
+            mountPath: /var/run/avahi-daemon/socket
+      volumes:
+      - name: dbus
+        hostPath:
+          path: /var/run/dbus
+      - name: host-avahi-daemon
+        hostPath:
+          path: /var/run/avahi-daemon/socket
   volumeClaimTemplates:
   - metadata:
       name: scrypted-data
