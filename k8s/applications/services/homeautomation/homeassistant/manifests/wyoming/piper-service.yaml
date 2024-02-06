@@ -11,3 +11,7 @@ spec:
     targetPort: wyoming
   selector:
     app: wyoming-piper
+  # Pending https://github.com/rhasspy/wyoming/pull/7/
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
