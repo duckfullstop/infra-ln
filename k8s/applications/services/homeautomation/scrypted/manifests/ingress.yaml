@@ -15,7 +15,7 @@ spec:
           service:
             name: scrypted
             port:
-              name: https
+              name: http
   tls:
   - hosts:
     - scrypted.home.theleachfamily.me.uk

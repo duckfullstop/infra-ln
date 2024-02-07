@@ -28,9 +28,12 @@ spec:
               memory: "2Gi"
               cpu: "1"
           ports:
-          - containerPort: 9443
+          - containerPort: 10443
             protocol: TCP
             name: https
+          - containerPort: 11080
+            protocol: TCP
+            name: http
           securityContext:
             privileged: true
             procMount: Default
