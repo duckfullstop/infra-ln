@@ -31,6 +31,7 @@ spec:
               url: 'https://argocd.net.theleachfamily.me.uk'
             params:
               server.insecure: "true"
+              controller.diff.server.side: "true"
             rbac:
               policy.csv: |
                 g, Number 10 Superop, role:admin
