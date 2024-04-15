@@ -7,7 +7,7 @@ spec:
   project: infrastructure
   sources:
     - repoURL: 'https://charts.jetstack.io'
-      targetRevision: v1.13.x
+      targetRevision: v1.14.x
       helm:
         valuesObject:
           installCRDs: true
