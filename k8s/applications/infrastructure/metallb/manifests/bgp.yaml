@@ -27,7 +27,7 @@ metadata:
 spec:
   myASN: 64520
   peerASN: 64512
-  peerAddress: 2a02:8010:61d0:beef:21f:29ff:fe58:9281
+  peerAddress: 2a02:8010:61d0:beef:be24:11ff:feea:a000 
   routerID: 10.0.0.1
   bfdProfile: leachnet-bfd
 ---
