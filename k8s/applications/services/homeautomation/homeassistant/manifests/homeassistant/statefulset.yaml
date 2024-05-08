@@ -22,7 +22,7 @@ spec:
         command: ['sh', '-c', 'until nc -zv mosquitto.database.svc 1883; do echo waiting for mqtt; sleep 2; done;']
       containers:
       - name: ha
-        image: ghcr.io/home-assistant/home-assistant:2024.4.2
+        image: ghcr.io/home-assistant/home-assistant:2024.5.2
         resources:
           requests:
             memory: "500Mi"
