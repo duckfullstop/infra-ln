@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium
+  namespace: homeautomation
+spec:
+  selector:
+    matchLabels:
+      app: selenium-chrome
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: selenium-chrome
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                  # Selenium requires amd64 for some reason.
+                  - amd64
+      containers:
+        - name: selenium-chrome
+          image: selenium/standalone-chrome:latest
+          ports:
+          - containerPort: 4444
+            protocol: TCP
+            name: selenium
+          - containerPort: 7900
+            protocol: TCP
+            name: admin
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "10m"
+            limits:
+              memory: "2Gi"
+              cpu: "1"
+          env:
+          - name: ESPHOME_DASHBOARD_USE_PING
+            value: "true"
+          volumeMounts:
+          - name: dshm
+            mountPath: /dev/shm
+          # startupProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: selenium
+          #   initialDelaySeconds: 5
+          #   failureThreshold: 10
+          #   timeoutSeconds: 10
+          #   periodSeconds: 10
+          #   successThreshold: 1
+          # readinessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: selenium
+          #   initialDelaySeconds: 12
+          #   failureThreshold: 10
+          #   timeoutSeconds: 10
+          #   periodSeconds: 10
+          #   successThreshold: 1
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: selenium
+          #   initialDelaySeconds: 10
+          #   failureThreshold: 10
+          #   timeoutSeconds: 10
+          #   periodSeconds: 10
+          #   successThreshold: 1
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 1Gi

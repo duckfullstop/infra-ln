@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: selenium
+spec:
+  ports:
+  - name: selenium
+    port: 4444
+    targetPort: selenium
+  - name: admin
+    port: 7900
+    targetPort: admin
+  selector:
+    app: selenium-chrome
