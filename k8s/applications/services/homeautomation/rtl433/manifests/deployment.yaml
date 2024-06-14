@@ -21,7 +21,7 @@ spec:
         command: ['sh', '-c', 'until nc -zv mosquitto.database.svc 1883; do echo waiting for mosquitto; sleep 2; done;']
       containers:
         - name: rtl433
-          image: ghcr.io/hertzg/rtl_433_docker:latest
+          image: ghcr.io/hertzg/rtl_433_docker:23.11
           resources:
             requests:
               memory: "50Mi"
@@ -36,14 +36,14 @@ spec:
             procMount: Default
           volumeMounts:
           - name: config
-            mountPath: /etc/rtl_433/rtl_433.conf
+            mountPath: /usr/local/etc/rtl_433/rtl_433.conf
             readOnly: true
             subPath: rtl_433.conf
           # Selection is performed in a finer fashion (serial number) by the config.
           - name: dev-bus-usb
             mountPath: /dev/bus/usb
           - name: secrets
-            mountPath: /etc/rtl_433/secret.conf
+            mountPath: /usr/local/etc/rtl_433/secret.conf
             readOnly: true
             subPath: secret.conf
       volumes:
