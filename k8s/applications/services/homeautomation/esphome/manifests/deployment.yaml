@@ -40,6 +40,10 @@ spec:
           volumeMounts:
           - name: config
             mountPath: /config
+          - name: cache
+            mountPath: /cache
+          - name: build
+            mountPath: /build
           - name: secrets
             mountPath: /config/secrets.yaml
             readOnly: true
@@ -57,3 +61,10 @@ spec:
       - name: config
         persistentVolumeClaim:
           claimName: esphome
+      - name: build
+        persistentVolumeClaim:
+          claimName: esphome-build
+      - name: cache
+        emptyDir:
+            # medium: "Memory"
+            sizeLimit: 8G
