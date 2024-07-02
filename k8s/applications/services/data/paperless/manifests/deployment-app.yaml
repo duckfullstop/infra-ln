@@ -67,6 +67,8 @@ spec:
               secretKeyRef:
                 name: paperless
                 key: adminPassword
+          - name: PAPERLESS_CONSUMER_ENABLE_BARCODES
+            value: "true"
           - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
             value: "true"
           - name: PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME
