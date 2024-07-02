@@ -13,6 +13,9 @@ spec:
       labels:
         app: paperless
     spec:
+      nodeSelector:
+        # The OCR is quite compute heavy, pin to HP node.
+        kubernetes.io/hostname: ln-k8s-wkr-1.leachnet
       containers:
         - name: paperless
           image: ghcr.io/paperless-ngx/paperless-ngx:latest
@@ -25,8 +28,8 @@ spec:
               memory: "100Mi"
               cpu: "10m"
             limits:
-              memory: "2Gi"
-              cpu: "1"
+              memory: "4Gi"
+              cpu: "8"
           env:
           - name: PAPERLESS_REDIS
             value: "redis://paperless-redis.data.svc.cluster.local:6379"
