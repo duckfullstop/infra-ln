@@ -74,6 +74,8 @@ spec:
                 key: adminPassword
           - name: PAPERLESS_CONSUMER_ENABLE_BARCODES
             value: "true"
+          - name: PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE
+            value: "true"
           - name: PAPERLESS_CONSUMER_BARCODE_SCANNER
             value: "ZXING"
           - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
