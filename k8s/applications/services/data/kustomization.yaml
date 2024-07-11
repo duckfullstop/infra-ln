@@ -1,4 +1,5 @@
 resources:
 - nextcloud
 - paperless
+- scanservjs
 - vaultwarden
