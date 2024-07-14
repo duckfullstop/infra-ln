@@ -30,7 +30,7 @@ spec:
               memory: "100Mi"
               cpu: "10m"
             limits:
-              memory: "4Gi"
+              memory: "8Gi"
               cpu: "8"
           env:
           - name: PAPERLESS_REDIS
