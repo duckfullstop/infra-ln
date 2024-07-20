@@ -19,7 +19,7 @@ spec:
   - name: http
     port: 8000
     targetPort: 8000
-    nodePort: 68080
+    nodePort: 61880
     protocol: TCP
   selector:
     app: paperless
