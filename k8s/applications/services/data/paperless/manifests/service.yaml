@@ -13,6 +13,25 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  name: paperless-nodeport
+spec:
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000
+    nodePort: 80800
+    protocol: TCP
+  selector:
+    app: paperless
+  ipFamilyPolicy: PreferDualStack
+  ipFamilies:
+   - IPv4
+   - IPv6
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: paperless-redis
 spec:
   ports:
