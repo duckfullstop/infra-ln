@@ -28,6 +28,7 @@ spec:
             prometheus:
               entryPoint: metrics
               serviceMonitor:
+                enabled: true
                 jobLabel: traefik
               service:
                 enabled: true
@@ -42,13 +43,15 @@ spec:
           ports:
             web:
               port: 80
-              expose: true
+              expose:
+                default: true
               exposedPort: 80
               nodePort: 80
               redirectTo: 
                 port: websecure
             websecure:
-              expose: true
+              expose:
+                default: true
               exposedPort: 443
               port: 443
               nodePort: 443
@@ -56,21 +59,25 @@ spec:
               tls:
                 enabled: true
             traefik:
-              expose: true
+              expose:
+                default: true
             mqtts:
               port: 8883
-              expose: true
+              expose:
+                default: true
               exposedPort: 8883
               nodePort: 8883
               protocol: TCP
             metrics:
               port: 9100
-              expose: false
+              expose:
+                default: false
               exposedPort: 9100
               protocol: TCP
             ldaps:
               port: 636
-              expose: true
+              expose:
+                default: true
               exposedPort: 636
               nodePort: 636
               protocol: TCP
