@@ -19,8 +19,6 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: selfsigned
-  usages:
-  - any
 ---
 # A global issuer using the local CA keypair.
 apiVersion: cert-manager.io/v1

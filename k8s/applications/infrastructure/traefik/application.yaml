@@ -16,8 +16,6 @@ spec:
           experimental:
             # kubernetesGateway:
             #  enabled: true
-          core:
-            defaultRuleSyntax: v2
           ingressRoute:
             dashboard:
               enabled: true
