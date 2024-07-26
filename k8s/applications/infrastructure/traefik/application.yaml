@@ -7,7 +7,7 @@ spec:
   project: infrastructure
   sources:
     - repoURL: https://helm.traefik.io/traefik
-      targetRevision: v29.0.x
+      targetRevision: v30.0.x
       helm:
         valuesObject:
           deployment:
@@ -16,6 +16,8 @@ spec:
           experimental:
             # kubernetesGateway:
             #  enabled: true
+          gateway:
+            namespacePolicy: All
           ingressRoute:
             dashboard:
               enabled: true
@@ -38,6 +40,8 @@ spec:
               enabled: true
               publishedService:
                 enabled: true
+            kubernetesGateway:
+              enabled: true
           ports:
             web:
               port: 80
