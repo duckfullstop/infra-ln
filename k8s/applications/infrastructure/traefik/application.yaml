@@ -17,6 +17,7 @@ spec:
             # kubernetesGateway:
             #  enabled: true
           gateway:
+            enabled: false
             namespacePolicy: All
           ingressRoute:
             dashboard:
