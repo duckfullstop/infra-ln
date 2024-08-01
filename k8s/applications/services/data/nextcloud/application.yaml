@@ -25,6 +25,12 @@ spec:
                   - files.theleachfamily.me.uk
                 secretName: "nextcloud-cert"
           nextcloud:
+            configs:
+              forwardedHeaders.config.php: |-
+                <?php
+                $CONFIG = array (
+                  'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+                );
             host: "files.theleachfamily.me.uk"
             existingSecret:
               enabled: true
