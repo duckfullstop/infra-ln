@@ -11,11 +11,14 @@ spec:
       targetRevision: "5.5.*"
       helm:
         valuesObject:
+          # image:
+          #   flavor: fpm
           ingress:
             enabled: true
             annotations:
               cert-manager.io/cluster-issuer: letsencrypt-http-prod
               traefik.ingress.kubernetes.io/preserve-host: "true"
+              traefik.ingress.kubernetes.io/router.middlewares: data-nextcloud-redirectregex@kubernetescrd
             pathType: ImplementationSpecific
             tls:
               - hosts:
@@ -23,21 +26,6 @@ spec:
                 secretName: "nextcloud-cert"
           nextcloud:
             host: "files.theleachfamily.me.uk"
-            configs:
-              reverse-proxy.config.php: |-
-                <?php
-                $CONFIG = array (
-                  'trusted_domains' => array(
-                    'files.theleachfamily.me.uk',
-                    'files.duck.moe',
-                    'files.duck.me.uk',
-                  ),
-                  'trusted_proxies' => array(
-                    '172.18.0.0/16',
-                    'fc00:abc1:0:2::',
-                  ),
-                  'overwriteprotocol' => 'https',
-                );
             existingSecret:
               enabled: true
               secretName: nextcloud
@@ -46,10 +34,16 @@ spec:
               smtpHostKey: mail-smtp-host
               smtpUsernameKey: mail-smtp-user
               smtpPasswordKey: mail-smtp-pass
+            extraEnv:
+              - name: TRUSTED_PROXIES
+                value: "172.18.0.0/16 fc00:abc1:0:2::"
             mail:
               enabled: true
               fromAddress: "nextcloud"
               domain: "theleachfamily.me.uk"
+            trustedDomains:
+              - "files.theleachfamily.me.uk"
+              - "files.duck.moe"
             # extraVolumes:
             #  - name: hugepages
             #    emptyDir:
@@ -57,6 +51,10 @@ spec:
             #      medium: HugePages-2Mi
             #   - name: hugepages
             #     mountPath: /dev/hugepages
+          # nginx:
+          #   enabled: true
+          phpClientHttpsFix:
+            enabled: true
           internalDatabase:
             enabled: false
           externalDatabase:
@@ -104,4 +102,4 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-      # - ServerSideApply=true
+      - ServerSideApply=true
