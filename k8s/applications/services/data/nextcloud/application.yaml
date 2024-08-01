@@ -43,6 +43,7 @@ spec:
               secretName: nextcloud
               usernameKey: admin-user
               passwordKey: admin-pass
+              smtpHostKey: mail-smtp-host
               smtpUsernameKey: mail-smtp-user
               smtpPasswordKey: mail-smtp-pass
             mail:
