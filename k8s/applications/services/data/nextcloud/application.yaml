@@ -11,8 +11,8 @@ spec:
       targetRevision: "5.5.*"
       helm:
         valuesObject:
-          # image:
-          #   flavor: fpm
+          image:
+            flavor: fpm
           ingress:
             enabled: true
             annotations:
@@ -29,7 +29,7 @@ spec:
               forwardedHeaders.config.php: |-
                 <?php
                 $CONFIG = array (
-                  'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+                  'forwarded_for_headers' => array('X_FORWARDED_FOR'),
                 );
             host: "files.theleachfamily.me.uk"
             existingSecret:
@@ -57,8 +57,8 @@ spec:
             #      medium: HugePages-2Mi
             #   - name: hugepages
             #     mountPath: /dev/hugepages
-          # nginx:
-          #   enabled: true
+          nginx:
+            enabled: true
           phpClientHttpsFix:
             enabled: true
           internalDatabase:
