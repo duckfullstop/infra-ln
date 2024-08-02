@@ -42,7 +42,7 @@ spec:
               smtpPasswordKey: mail-smtp-pass
             extraEnv:
               - name: TRUSTED_PROXIES
-                value: "172.18.0.0/16 fc00:abc1:0:1::"
+                value: "172.18.0.0/16 fc00:abc1:0:1::/64"
             mail:
               enabled: true
               fromAddress: "nextcloud"
