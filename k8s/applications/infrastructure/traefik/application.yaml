@@ -85,9 +85,6 @@ spec:
               nodePort: 636
               protocol: TCP
           service:
-            annotations: 
-              metallb.universe.tf/address-pool: internal-services
-              metallb.universe.tf/loadBalancerIPs: 10.1.0.1,2a02:8010:61d0:8888:1337:0000:1:1
             enabled: true
             ipFamilies:
             - IPv6
@@ -95,7 +92,7 @@ spec:
             ipFamilyPolicy: PreferDualStack
             spec:
               externalTrafficPolicy: Local
-            type: LoadBalancer
+            type: NodePort
           securityContext:
             capabilities:
               drop: [ALL]
