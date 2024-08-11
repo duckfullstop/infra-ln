@@ -12,21 +12,3 @@ spec:
     targetPort: mqtts
   selector:
     app: mosquitto
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mosquitto-lb
-spec:
-  ports:
-  - name: mqtt
-    port: 1883
-    protocol: TCP
-    targetPort: mqtt
-  selector:
-    app: mosquitto
-  ipFamilyPolicy: PreferDualStack
-  ipFamilies:
-   - IPv6
-   - IPv4
-  type: LoadBalancer

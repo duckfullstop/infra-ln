@@ -1,5 +1,0 @@
-namespace: metallb-system
-
-resources:
-  - internal-services.yaml
-  - bgp.yaml
