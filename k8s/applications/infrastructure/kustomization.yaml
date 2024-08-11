@@ -7,7 +7,6 @@ resources:
   - democratic-csi
   - device-drivers
   - flannel
-  - metallb
   - minio
   - sealed-secrets
   - traefik
