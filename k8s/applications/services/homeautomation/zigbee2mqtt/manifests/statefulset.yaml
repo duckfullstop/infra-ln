@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: zigbee2mqtt
-  replicas: 1
+  replicas: 0
   serviceName: "zigbee2mqtt"
   template:
     metadata:
