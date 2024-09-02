@@ -65,7 +65,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: mediavault-music
+  name: demivault-media-music
   labels:
     type: local
 spec:
@@ -76,12 +76,12 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/mediavault/music"
+    path: "/mnt/demivault/media/music"
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: mediavault-video
+  name: demivault-media-video
   labels:
     type: local
 spec:
@@ -92,7 +92,7 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/mediavault/video"
+    path: "/mnt/demivault/media/video"
 ---
 apiVersion: v1
 kind: PersistentVolume

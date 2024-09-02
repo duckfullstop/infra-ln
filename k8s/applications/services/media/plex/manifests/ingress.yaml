@@ -4,6 +4,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-http-prod
   name: plex
+  namespace: media
 spec:
   rules:
   - host: plex.net.theleachfamily.me.uk

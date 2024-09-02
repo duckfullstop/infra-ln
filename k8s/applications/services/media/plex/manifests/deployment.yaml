@@ -70,9 +70,9 @@ spec:
             mountPath: /data/media/video
           - name: data-media-music
             mountPath: /data/media/music
-          - name: data-mediavault-music
+          - name: data-demivault-music
             mountPath: /data/mediavault/music
-          - name: data-mediavault-video
+          - name: data-demivault-video
             mountPath: /data/mediavault/video
       volumes:
       - name: dev-dri
@@ -96,9 +96,9 @@ spec:
       - name: data-media-music
         persistentVolumeClaim:
           claimName: plex-media-music
-      - name: data-mediavault-video
+      - name: data-demivault-video
         persistentVolumeClaim:
-          claimName: plex-mediavault-video
-      - name: data-mediavault-music
+          claimName: plex-demivault-media-video
+      - name: data-demivault-music
         persistentVolumeClaim:
-          claimName: plex-mediavault-music
+          claimName: plex-demivault-media-music

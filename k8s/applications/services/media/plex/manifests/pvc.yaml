@@ -53,7 +53,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: plex-mediavault-music
+  name: plex-demivault-media-music
 spec:
   accessModes:
   - ReadWriteMany
@@ -61,12 +61,12 @@ spec:
     requests:
       storage: 1Ti
   storageClassName: "manual"
-  volumeName: "mediavault-music"
+  volumeName: "demivault-media-music"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: plex-mediavault-video
+  name: plex-demivault-media-video
 spec:
   accessModes:
   - ReadWriteMany
@@ -74,7 +74,7 @@ spec:
     requests:
       storage: 1Ti
   storageClassName: "manual"
-  volumeName: "mediavault-video"
+  volumeName: "demivault-media-video"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
