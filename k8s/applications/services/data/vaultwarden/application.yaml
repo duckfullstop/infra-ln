@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: 'https://guerzon.github.io/vaultwarden'
       chart: vaultwarden
-      targetRevision: "0.19.*"
+      targetRevision: "0.28.*"
       helm:
         valuesObject:
           domain: https://bitwarden.theleachfamily.me.uk
