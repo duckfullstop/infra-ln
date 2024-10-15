@@ -19,4 +19,4 @@ spec:
     - homeautomation
   selector:
     matchLabels:
-      app: home-assistant
+      app: home-assistant-external
