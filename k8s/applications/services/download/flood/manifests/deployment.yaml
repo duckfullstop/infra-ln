@@ -14,7 +14,7 @@ spec:
         app: flood
     spec:
       containers:
-      - image: jesec/flood:master-distroless
+      - image: jesec/flood:4.8.4
         name: flood
         resources:
             requests:
