@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: photon
+spec:
+  selector:
+    matchLabels:
+      app: photon
+  replicas: 0
+  template:
+    metadata:
+      labels:
+        app: photon
+    spec:
+      containers:
+        - name: photon
+          image: rtuszik/photon-docker:latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 2322
+            protocol: TCP
+            name: http
+          # resources:
+          #  requests:
+          #     memory: "50Mi"
+          #     cpu: "50m"
+          #   limits:
+          #     memory: "200Mi"
+          #     cpu: "1"
+          volumeMounts:
+          - name: data
+            mountPath: /photon/photon_data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: photon-data

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: photon
+  namespace: argocd
+spec:
+  project: services
+  source:
+    repoURL: 'https://github.com/duckfullstop/infra-ln'
+    path: k8s/applications/services/locationhistory/photon/manifests
+    targetRevision: main
+  destination:
+    namespace: homeautomation
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

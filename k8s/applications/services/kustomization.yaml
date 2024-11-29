@@ -6,5 +6,6 @@ resources:
   - flight-tracking
   - homeautomation
   - iptv
+  - locationhistory
   - media
   - owntracks
