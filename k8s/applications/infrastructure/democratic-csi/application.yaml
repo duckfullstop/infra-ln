@@ -12,7 +12,7 @@ spec:
       helm:
         valuesObject:
           csiDriver:
-            name: "org.democratic-csi.nfs"
+            name: "org.democratic-csi.nfs-fast"
 
           storageClasses:
           - name: vault-fast-nfs
@@ -34,12 +34,40 @@ spec:
               controller-expand-secret:
 
           driver:
-            existingConfigSecret: democratic-csi
+            existingConfigSecret: dcsi-nfs-fast
             config:
-              driver: freenas-nfs
-              
-              # Backfilled from secret
+              driver: freenas-api-nfs
+    - repoURL: 'https://democratic-csi.github.io/charts/'
+      chart: democratic-csi
+      targetRevision: 0.14.5
+      helm:
+        valuesObject:
+          csiDriver:
+            name: "org.democratic-csi.nfs-slow"
 
+          storageClasses:
+          - name: vault-slow-nfs
+            defaultClass: false
+            reclaimPolicy: Retain
+            volumeBindingMode: Immediate
+            allowVolumeExpansion: true
+            parameters:
+              fsType: nfs
+                
+            mountOptions:
+            - noatime
+            - nfsvers=4
+            secrets:
+              provisioner-secret:
+              controller-publish-secret:
+              node-stage-secret:
+              node-publish-secret:
+              controller-expand-secret:
+
+          driver:
+            existingConfigSecret: dcsi-nfs-slow
+            config:
+              driver: freenas-api-nfs
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
       path: k8s/applications/infrastructure/democratic-csi/manifests
       targetRevision: main
