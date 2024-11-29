@@ -15,7 +15,7 @@ spec:
             name: "org.democratic-csi.nfs"
 
           storageClasses:
-          - name: vault-nfs
+          - name: vault-fast-nfs
             defaultClass: false
             reclaimPolicy: Retain
             volumeBindingMode: Immediate
