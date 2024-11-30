@@ -12,6 +12,15 @@ spec:
       labels:
         app: photon
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                  - amd64
       containers:
         - name: photon
           image: rtuszik/photon-docker:latest
