@@ -1,0 +1,72 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dawarich
+  namespace: argocd
+spec:
+  project: infrastructure
+  sources:
+    - repoURL: 'https://charts.cogitri.dev'
+      chart: dawarich
+      targetRevision: 0.3.2
+      helm:
+        valuesObject:
+          dawarich:
+            env:
+              minMinutesSpentInCity: "60"
+              applicationHost: "dawarich.theleachfamily.me.uk"
+              timeZone: "Europe/London"
+              backgroundProcessingConcurrency: "10"
+              applicationProtocol: "http"
+              distanceUnit: "mi"
+              photonApiHost: "photon.locationhistory.svc.cluster.local"
+              photonApiUseHttps: "false"
+          ingress:
+            enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-http-prod
+            hosts:
+              - host: dawarich.theleachfamily.me.uk
+                paths:
+                  - path: /
+                    pathType: ImplementationSpecific
+            tls:
+              - secretName: dawarich-cert
+                hosts:
+                  - dawarich.theleachfamily.me.uk
+          persistence:
+            gemCache:
+              storageClass: ""
+              size: 1Gi
+            public:
+              storageClass: ""
+              size: 10Gi
+            watched:
+              storageClass: ""
+              size: 1Gi
+          postgresql:
+            auth:
+              # existingSecret: dawarich-postgresql
+            primary:
+              persistence:
+                enabled: false
+                # storageClass: ""
+                # size: 8Gi
+          redis:
+            auth:
+              enabled: true
+              existingSecret: dawarich
+            master:
+              persistence:
+                enabled: false
+            replica:
+              replicaCount: 0
+    - repoURL: 'https://github.com/duckfullstop/infra-ln'
+      path: k8s/applications/services/locationhistory/dawarich/manifests
+      targetRevision: main
+  destination:
+    namespace: locationhistory
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
