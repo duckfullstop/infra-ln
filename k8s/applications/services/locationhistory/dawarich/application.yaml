@@ -36,13 +36,13 @@ spec:
                   - dawarich.theleachfamily.me.uk
           persistence:
             gemCache:
-              storageClass: ""
+              storageClass: "vault-fast-nfs"
               size: 1Gi
             public:
-              storageClass: ""
+              storageClass: "vault-fast-nfs"
               size: 10Gi
             watched:
-              storageClass: ""
+              storageClass: "vault-fast-nfs"
               size: 1Gi
           postgresql:
             auth:
