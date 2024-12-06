@@ -49,16 +49,18 @@ spec:
               # existingSecret: dawarich-postgresql
             primary:
               persistence:
-                enabled: false
-                # storageClass: ""
-                # size: 8Gi
+                enabled: true
+                storageClass: "vault-fast-nfs"
+                size: 10Gi
           redis:
             auth:
               enabled: true
               existingSecret: dawarich
             master:
               persistence:
-                enabled: false
+                enabled: true
+                storageClass: "vault-fast-nfs"
+                size: 1Gi
             replica:
               replicaCount: 0
     - repoURL: 'https://github.com/duckfullstop/infra-ln'
