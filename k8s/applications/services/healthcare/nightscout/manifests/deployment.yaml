@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nightscout-librelink
+  labels:
+    app: nightscout-librelink
+spec:
+  selector:
+    matchLabels:
+      app: nightscout-librelink
+  template:
+    metadata:
+      labels:
+        app: nightscout-librelink
+    spec:
+      containers:
+      - image: timoschlueter/nightscout-librelink-up
+        name: librelink
+        resources:
+          requests:
+            memory: "10Mi"
+            cpu: "50m"
+          limits:
+            memory: "50Mi"
+            cpu: "500m"
+        env:
+        - name: LINK_UP_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: nightscout-librelink
+              key: librelink-username
+        - name: LINK_UP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: nightscout-librelink
+              key: librelink-password
+        - name: LINK_UP_TIME_INTERVAL
+          value: '5'
+        - name: LINK_UP_REGION
+          value: 'EU'
+        - name: ALL_DATA
+          value: 'true'
+        - name: NIGHTSCOUT_URL
+          value: 'https://nightscout.theleachfamily.me.uk'
+        - name: NIGHTSCOUT_API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: nightscout-librelink
+              key: nightscout-token
