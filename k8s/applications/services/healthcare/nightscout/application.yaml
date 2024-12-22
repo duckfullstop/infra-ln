@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nightscout
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    repoURL: 'https://charts.cogitri.dev'
+    chart: dawarich
+    targetRevision: 0.4.*
+    helm:
+      valuesObject:
+        env:
+          API_SECRET:
+            valueFrom:
+              secretKeyRef:
+                name: nightscout
+                key: SECRET_KEY
+          DISPLAY_UNITS: 'mmol'
+        ingress:
+          enabled: true
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-http-prod
+          hosts:
+            - host: nightscout.theleachfamily.me.uk
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+          tls:
+            - secretName: dawarich-cert
+              hosts:
+                - nightscout.theleachfamily.me.uk
+        mongodb:
+          enabled: true
+          auth:
+            existingSecret: nightscout
+          persistence:
+            enabled: true
+            storageClass: "vault-fast-nfs"
+            size: 5Gi
+  destination:
+    namespace: healthcare
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
