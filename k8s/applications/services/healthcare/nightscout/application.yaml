@@ -40,7 +40,7 @@ spec:
               storageClass: "vault-fast-nfs"
               size: 5Gi
     - repoURL: 'https://github.com/duckfullstop/infra-ln'
-      path: k8s/applications/services/locationhistory/dawarich/manifests
+      path: k8s/applications/services/healthcare/nightscout/manifests
       targetRevision: main
   destination:
     namespace: healthcare
