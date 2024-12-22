@@ -34,8 +34,6 @@ spec:
                     - nightscout.theleachfamily.me.uk
           mongodb:
             enabled: true
-            auth:
-              existingSecret: nightscout
             persistence:
               enabled: true
               storageClass: "vault-fast-nfs"
