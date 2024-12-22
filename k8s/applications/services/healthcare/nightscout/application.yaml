@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: 'https://charts.gabe565.com'
       chart: nightscout
-      # targetRevision: 0.4.*
+      targetRevision: 0.13.*
       helm:
         valuesObject:
           env:
