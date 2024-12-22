@@ -6,9 +6,9 @@ metadata:
 spec:
   project: infrastructure
   source:
-    repoURL: 'https://charts.cogitri.dev'
-    chart: dawarich
-    targetRevision: 0.4.*
+    repoURL: 'https://charts.gabe565.com'
+    chart: nightscout
+    # targetRevision: 0.4.*
     helm:
       valuesObject:
         env:

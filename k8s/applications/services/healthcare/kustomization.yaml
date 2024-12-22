@@ -1,4 +1,2 @@
 resources:
-- extra-manifests
-- flood
-- qbittorrent
+- nightscout
