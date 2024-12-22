@@ -1,0 +1,99 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  # This job updates the latest set of Librelink data.
+  name: nightscout-librelink-5min
+  labels:
+    app: nightscout-librelink
+spec:
+  schedule: "*/5 * * * *"
+  startingDeadlineSeconds: 300
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - image: timoschlueter/nightscout-librelink-up
+              name: librelink
+              resources:
+                requests:
+                  memory: "50Mi"
+                  cpu: "50m"
+                limits:
+                  memory: "500Mi"
+                  cpu: "500m"
+              env:
+              - name: LINK_UP_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: nightscout-librelink
+                    key: librelink-username
+              - name: LINK_UP_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: nightscout-librelink
+                    key: librelink-password
+              - name: LINK_UP_REGION
+                value: 'EU2'
+              - name: ALL_DATA
+                value: 'false'
+              - name: SINGLE_SHOT
+                value: 'true'
+              - name: NIGHTSCOUT_URL
+                value: 'nightscout.theleachfamily.me.uk'
+              - name: NIGHTSCOUT_API_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: nightscout-librelink
+                    key: nightscout-token
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  # This job updates all of the data available from the LibreLink API.
+  name: nightscout-librelink-6hr
+  labels:
+    app: nightscout-librelink
+spec:
+  schedule: "0 */6 * * *"
+  startingDeadlineSeconds: 300
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - image: timoschlueter/nightscout-librelink-up
+              name: librelink
+              resources:
+                requests:
+                  memory: "50Mi"
+                  cpu: "50m"
+                limits:
+                  memory: "500Mi"
+                  cpu: "500m"
+              env:
+              - name: LINK_UP_USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: nightscout-librelink
+                    key: librelink-username
+              - name: LINK_UP_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: nightscout-librelink
+                    key: librelink-password
+              - name: LINK_UP_REGION
+                value: 'EU2'
+              - name: ALL_DATA
+                value: 'true'
+              - name: SINGLE_SHOT
+                value: 'true'
+              - name: NIGHTSCOUT_URL
+                value: 'nightscout.theleachfamily.me.uk'
+              - name: NIGHTSCOUT_API_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: nightscout-librelink
+                    key: nightscout-token
