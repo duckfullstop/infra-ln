@@ -17,6 +17,7 @@ spec:
                 secretKeyRef:
                   name: nightscout
                   key: SECRET_KEY
+            AUTH_DEFAULT_ROLES: 'denied'
             DISPLAY_UNITS: 'mmol'
           ingress:
             main:
@@ -36,6 +37,8 @@ spec:
             enabled: true
             auth:
               existingSecret: nightscout-mongodb
+            environment:
+              - MONGODB_ENABLE_IPV6=yes
             persistence:
               enabled: true
               storageClass: "vault-fast-nfs"
