@@ -1,0 +1,38 @@
+router bgp 65023
+  bgp router-id 10.0.0.254
+  timers bgp 3 9
+  no bgp ebgp-requires-policy
+  no bgp default ipv4-unicast
+  no bgp network import-check
+
+  neighbor leachnet-v4 peer-group
+  neighbor leachnet-v4 remote-as 64512
+  neighbor leachnet-v4 timers 4 12
+  neighbor leachnet-v4 timers connect 5
+
+  neighbor leachnet-v6 peer-group
+  neighbor leachnet-v6 remote-as 64512
+  neighbor leachnet-v6 timers 4 12
+  neighbor leachnet-v6 timers connect 5
+
+  neighbor 10.0.1.100 peer-group leachnet-v4
+  neighbor 10.0.1.101 peer-group leachnet-v4
+  neighbor 10.0.1.102 peer-group leachnet-v4
+
+  ! orch
+  neighbor 2a02:8010:61d0:0:be24:11ff:fe97:e5f2 peer-group leachnet-v6
+  ! wkr-1
+  neighbor 2a02:8010:61d0:0:be24:11ff:fede:83c7 peer-group leachnet-v6
+  ! wkr-2
+  neighbor 2a02:8010:61d0:0:dea6:32ff:fe00:192f peer-group leachnet-v6
+
+  address-family ipv4 unicast
+    neighbor leachnet-v4 activate
+    neighbor leachnet-v4 next-hop-self
+    network 10.1.0.0/24
+  exit-address-family
+  address-family ipv6 unicast
+    neighbor leachnet-v6 activate
+    neighbor leachnet-v6 next-hop-self
+    network 2a02:8010:61d0:8888:1337:0000:1::/112
+  exit-address-family
