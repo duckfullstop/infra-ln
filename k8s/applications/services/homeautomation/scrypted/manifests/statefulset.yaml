@@ -24,9 +24,11 @@ spec:
             requests:
               memory: "1Gi"
               cpu: "100m"
+              device.duck.moe/dri: "1"
             limits:
               memory: "2Gi"
               cpu: "1"
+              device.duck.moe/dri: "1"
           ports:
           - containerPort: 10443
             protocol: TCP
@@ -43,11 +45,17 @@ spec:
           volumeMounts:
           - name: scrypted-data
             mountPath: /server/volume
+          - name: dri
+            mountPath: /dev/dri
           - name: dbus
             mountPath: /var/run/dbus
           - name: host-avahi-daemon
             mountPath: /var/run/avahi-daemon/socket
       volumes:
+      - name: dev-dri
+        hostPath:
+          path: /dev/dri
+          type: Directory
       - name: dbus
         hostPath:
           path: /var/run/dbus
