@@ -1,0 +1,54 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: immich
+  namespace: argocd
+spec:
+  project: services
+  sources:
+    - repoURL: 'ghcr.io/immich-app/immich-charts'
+      chart: immich
+      targetRevision: "0.9.*"
+      helm:
+        valuesObject:
+          # image:
+          #   flavor: fpm
+          env:
+            DB_HOSTNAME: "immich-rw.data.svc.cluster.local"
+            DB_USERNAME: "immich"
+            DB_PASSWORD: "bU7qwjb6XtEOrEKk20LmcmrGjn0kv1jFc3sarhR7VlwouJhuT0DRoS1RSfN0ixDL"
+          immich:
+            metrics:
+              enabled: true
+            persistence:
+              library:
+                existingClaim: immich-data
+          redis:
+            enabled: true
+          server:
+            enabled: true
+            ingress:
+              main:
+                enabled: true
+                annotations:
+                  cert-manager.io/cluster-issuer: letsencrypt-http-prod
+                  traefik.ingress.kubernetes.io/preserve-host: "true"
+                hosts:
+                  - host: immich.theleachfamily.me.uk
+                    paths:
+                      - path: "/"
+                tls:
+                  - hosts:
+                      - immich.theleachfamily.me.uk
+                    secretName: "immich-cert"
+          
+    - repoURL: 'https://github.com/duckfullstop/infra-ln'
+      path: k8s/applications/services/data/immich/manifests
+      targetRevision: main
+  destination:
+    namespace: data
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

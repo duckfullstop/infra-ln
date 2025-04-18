@@ -1,4 +1,5 @@
 resources:
+- immich
 - nextcloud
 - paperless
 - scanservjs
