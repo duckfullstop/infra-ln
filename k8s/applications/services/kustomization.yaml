@@ -4,6 +4,7 @@ resources:
   - database
   - download
   - flight-tracking
+  - game
   - healthcare
   - homeautomation
   - iptv

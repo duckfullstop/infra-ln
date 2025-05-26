@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minecraft
+  namespace: game
+spec:
+  project: infrastructure
+  sources:
+    - repoURL: 'hhttps://itzg.github.io/minecraft-server-charts/'
+      chart: minecraft
+      targetRevision: 4.26.*
+      helm:
+        valuesObject:
+          nodeSelector:
+            kubernetes.io/hostname: ln-k8s-wkr-1.leachnet
+          minecraftServer:
+            eula: true
+            type: "PAPER"
+            difficulty: "normal"
+            whitelist: duck
+            ops: duck
+            motd: "Welcome to the Steam Bros. Minecraft Server! Oh no."
+  destination:
+    namespace: game
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
