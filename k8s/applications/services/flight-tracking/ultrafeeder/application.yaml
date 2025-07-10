@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: readsb
+  name: ultrafeeder
   namespace: argocd
 spec:
   project: services
   source:
     repoURL: 'https://github.com/duckfullstop/infra-ln/'
-    path: k8s/applications/services/flight-tracking/readsb/manifests
+    path: k8s/applications/services/flight-tracking/ultrafeeder/manifests
     targetRevision: main
   destination:
     namespace: flight-tracking

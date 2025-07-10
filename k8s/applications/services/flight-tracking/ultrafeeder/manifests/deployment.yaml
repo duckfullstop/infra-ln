@@ -1,0 +1,202 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ultrafeeder
+  namespace: flight-tracking
+spec:
+  selector:
+    matchLabels:
+      app: ultrafeeder
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ultrafeeder
+    spec:
+      containers:
+        - name: ultrafeeder
+          image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest
+          ports:
+          - containerPort: 80
+            protocol: TCP
+            name: http
+          - containerPort: 9273
+            protocol: TCP
+            name: metrics-1
+          - containerPort: 9274
+            protocol: TCP
+            name: metrics-2
+          - containerPort: 30005
+            protocol: TCP
+            name: beast
+          - containerPort: 30105
+            protocol: TCP
+            name: beast-reduce
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "250m"
+              device.duck.moe/radio-ads: "1"
+            limits:
+              # memory: "100Mi"
+              # cpu: "500m"
+              device.duck.moe/radio-ads: "1"
+          securityContext:
+            privileged: true
+            procMount: Default
+          env:
+          - name: LOGLEVEL
+            value: "error"
+          - name: FEEDER_TZ
+            value: "Europe/London"
+          - name: DISABLE_WEBAPP
+            value: "false"
+          - name: DISABLE_PERFORMANCE_GRAPHS
+            value: "true"
+          - name: TZ
+            value: "Europe/London"
+          - name: MLAT_USER
+            valueFrom:
+              secretKeyRef:
+                name: ads-b
+                key: SITE_NAME
+          - name: UUID
+            valueFrom:
+              secretKeyRef:
+                name: ads-b
+                key: SITE_UUID
+          - name: PROMETHEUS_ENABLE
+            value: "true"
+          - name: READSB_DCFILTER
+            value: "true"
+          - name: READSB_FIX
+            value: "true"
+          - name: READSB_GAIN
+            value: "auto"
+          - name: READSB_LAT
+            valueFrom:
+              secretKeyRef:
+                name: ads-b
+                key: SITE_LATITUDE
+          - name: READSB_LON
+            valueFrom:
+              secretKeyRef:
+                name: ads-b
+                key: SITE_LONGITUDE
+          - name: READSB_ALT
+            valueFrom:
+              secretKeyRef:
+                name: ads-b
+                key: SITE_ALTITUDE
+          - name: READSB_MODEAC
+            value: "true"
+          - name: READSB_DEVICE_TYPE
+            value: "rtlsdr"
+          - name: READSB_RTLSDR_DEVICE
+            value: "00001000"
+          - name: READSB_RTLSDR_PPM
+            value: "1"
+          - name: READSB_RX_LOCATION_ACCURACY
+            value: "2"
+          - name: READSB_STATS_RANGE
+            value: "true"
+          - name: READSB_NET_ENABLE
+            value: "true"
+          - name: READSB_NET_REDUCE_OUT_PORT
+            value: "30105"
+          - name: UPDATE_TAR1090
+            value: "true"
+          - name: TAR1090_DEFAULTCENTERLAT
+            valueFrom:
+              secretKeyRef:
+                name: ads-b
+                key: SITE_LATITUDE
+          - name: TAR1090_DEFAULTCENTERLON
+            valueFrom:
+              secretKeyRef:
+                name: ads-b
+                key: SITE_LONGITUDE
+          - name: TAR1090_MESSAGERATEINTITLE
+            value: "true"
+          - name: TAR1090_PLANECOUNTINTITLE
+            value: "true"
+          - name: TAR1090_ENABLE_AC_DB
+            value: "true"
+          - name: TAR1090_FLIGHTAWARELINKS
+            value: "true"
+          - name: TAR1090_SITESHOW
+            value: "true"
+          - name: TAR1090_RANGE_OUTLINE_COLORED_BY_ALTITUDE
+            value: "true"
+          - name: TAR1090_RANGE_OUTLINE_WIDTH
+            value: "2.0"
+          - name: TAR1090_RANGERINGSDISTANCES
+            value: "50,100,150,200"
+          - name: TAR1090_RANGERINGSCOLORS
+            value: "'#1A237E','#0D47A1','#42A5F5','#64B5F6'"
+          - name: TAR1090_USEROUTEAPI
+            value: "true"
+          - name: ULTRAFEEDER_CONFIG
+            value: |
+              adsb,feed.adsb.fi,30004,beast_reduce_plus_out;
+              adsb,in.adsb.lol,30004,beast_reduce_plus_out;
+              adsb,feed.airplanes.live,30004,beast_reduce_plus_out;
+              adsb,feed.planespotters.net,30004,beast_reduce_plus_out;
+              adsb,feed.theairtraffic.com,30004,beast_reduce_plus_out;
+              adsb,data.avdelphi.com,24999,beast_reduce_plus_out;
+              adsb,skyfeed.hpradar.com,30004,beast_reduce_plus_out;
+              adsb,dati.flyitalyadsb.com,4905,beast_reduce_plus_out;
+              mlat,feed.adsb.fi,31090,39000;
+              mlat,in.adsb.lol,31090,39001;
+              mlat,feed.airplanes.live,31090,39002;
+              mlat,mlat.planespotters.net,31090,39003;
+              mlat,feed.theairtraffic.com,31090,39004;
+              mlat,skyfeed.hpradar.com,31090,39005;
+              mlat,feed.radarplane.com,31090,39006;
+              mlat,dati.flyitalyadsb.com,30100,39007;
+              mlathub,flightaware,30105,beast_in;
+          volumeMounts:
+          - name: usb-ads-b
+            mountPath: /dev/bus/usb
+          - name: globe-history
+            mountPath: /var/globe_history
+          - name: var-log
+            mountPath: /var/log
+          - name: tmp
+            mountPath: /tmp
+          - name: run
+            mountPath: /run
+          # livenessProbe:
+          #   exec:
+          #     command:
+          #       - /scripts/healthcheck.sh
+          #   periodSeconds: 60
+          #   failureThreshold: 3
+          #   timeoutSeconds: 30
+          # startupProbe:
+          #   exec:
+          #     command:
+          #       - /scripts/healthcheck.sh
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 10
+          #   failureThreshold: 30
+          #   timeoutSeconds: 30
+      volumes:
+      - name: usb-ads-b
+        hostPath:
+          path: /dev/bus/usb
+          type: Directory
+      - name: globe-history
+        emptyDir: {}
+      - name: run
+        emptyDir:
+          medium: "Memory"
+          sizeLimit: 256M
+      - name: tmp
+        emptyDir:
+          sizeLimit: 128M
+      - name: var-log
+        emptyDir:
+          sizeLimit: 32M

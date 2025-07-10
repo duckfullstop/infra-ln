@@ -1,5 +1,6 @@
 resources:
 - deployment.yaml
-- pv.yaml
+- ingress.yaml
+# - pv.yaml
 - service.yaml
 - servicemonitor.yaml
