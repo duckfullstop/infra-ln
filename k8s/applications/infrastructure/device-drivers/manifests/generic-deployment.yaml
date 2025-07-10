@@ -33,7 +33,7 @@ spec:
         - --device
         - '{"name": "radio-zigbee", "groups": [{"usb": [{"vendor": "1a86", "product": "7523"}]}]}'
         - --device
-        - '{"name": "radio-ads", "groups": [{"usb": [{"vendor": "2109", "product": "3431"}]}]}'
+        - '{"name": "radio-ads", "groups": [{"usb": [{"vendor": "0bda", "product": "2832"}]}]}'
         - --device
         - '{"name": "radio-433", "groups": [{"usb": [{"vendor": "0bda", "product": "2838"}]}]}'
         - --device
