@@ -28,8 +28,8 @@ spec:
   - name: http    
     port: 8123
     targetPort: 8123
-  externalName: thinker.iot.leachnet
-  # externalName: 10.0.3.1
+  externalName: ha.iot.leachnet
+  # externalName: 10.3.0.1
 ---
 kind: Endpoints
 apiVersion: v1
@@ -39,7 +39,7 @@ metadata:
     app: home-assistant-external
 subsets:
   - addresses:
-      - ip: 10.0.3.1
+      - ip: 10.3.0.1
     ports: 
       - name: http
         port: 8123
