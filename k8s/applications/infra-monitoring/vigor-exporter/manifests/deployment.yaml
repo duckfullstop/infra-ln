@@ -18,7 +18,7 @@ spec:
           image: docker.io/duckfullstop/vigor-exporter
           args:
             - -host
-            - "192.168.2.1"
+            - "10.0.254.1"
             - -username
             - admin
             - -password
