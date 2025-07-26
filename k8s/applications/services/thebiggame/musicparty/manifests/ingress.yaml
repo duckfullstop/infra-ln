@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-http-prod
+  name: musicparty
+spec:
+  rules:
+  - host: music.thebiggame.org
+    http: &http_rules
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: musicparty
+            port:
+              name: http
+  - host: music.tbg.duck.moe
+    http: *http_rules
+  tls:
+    - hosts:
+      - music.thebiggame.org
+      - music.tbg.duck.moe
+      secretName: musicparty-tbg-cert

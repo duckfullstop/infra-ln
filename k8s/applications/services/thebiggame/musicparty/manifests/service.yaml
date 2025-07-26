@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: musicparty
+  labels:
+    app: musicparty
+spec:
+  ipFamilies:
+    - IPv4
+  selector:
+    app: musicparty
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  - name: ws
+    protocol: TCP
+    port: 8080
+    targetPort: 8080

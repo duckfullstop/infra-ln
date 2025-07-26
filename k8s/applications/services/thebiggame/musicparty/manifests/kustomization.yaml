@@ -1,0 +1,9 @@
+namespace: thebiggame
+
+resources:
+- configmap.yaml
+- deployment.yaml
+- ingressroute.yaml
+- pvc.yaml
+- secret.yaml
+- service.yaml

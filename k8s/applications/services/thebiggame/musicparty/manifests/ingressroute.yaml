@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: musicparty
+  namespace: thebiggame
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`music.thebiggame.org`)
+      priority: 10
+      services:
+        - name: musicparty
+          port: http
+    - kind: Rule
+      match: Host(`music.thebiggame.org`) && PathPrefix(`/apps`)
+      priority: 11
+      services:
+        - name: musicparty
+          port: ws
+    - kind: Rule
+      match: Host(`music.thebiggame.org`) && PathPrefix(`/app`)
+      priority: 11
+      services:
+        - name: musicparty
+          port: ws
+  tls:
+    domains:
+      - main: "music.thebiggame.org"
+      - main: "music.tbg.duck.moe"
+    secretName: musicparty-tbg-cert
