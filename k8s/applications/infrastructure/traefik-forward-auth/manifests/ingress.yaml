@@ -4,22 +4,20 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-http-prod
     traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth@kubernetescrd
-  name: flood
+  name: forward-auth
 spec:
   rules:
-  - host: flood.net.theleachfamily.me.uk
-    http: &http_rules
+  - host: auth.net.theleachfamily.me.uk
+    http: 
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: flood-http
+            name: traefik-forward-auth
             port:
               name: http
-#  - host: flood.downloads.duck.moe
-#    http: *http_rules
   tls:
   - hosts:
-    - flood.net.theleachfamily.me.uk
-    secretName: flood-cert
+    - auth.net.theleachfamily.me.uk
+    secretName: forward-auth-cert

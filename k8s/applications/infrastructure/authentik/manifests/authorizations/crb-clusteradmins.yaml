@@ -12,4 +12,4 @@ subjects:
   name: oidc:Superusers
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: oidc:Number 10 Superop
+  name: oidc:leachnet_ops

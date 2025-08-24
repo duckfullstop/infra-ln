@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik-forward-auth
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    repoURL: 'https://github.com/duckfullstop/infra-ln'
+    path: k8s/applications/infrastructure/traefik-forward-auth/manifests
+    targetRevision: main
+  destination:
+    namespace: kube-system
+    name: leachnet

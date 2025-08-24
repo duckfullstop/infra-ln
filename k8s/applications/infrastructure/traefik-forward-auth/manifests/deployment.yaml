@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik-forward-auth
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: traefik-forward-auth
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: traefik-forward-auth
+    spec:
+      containers:
+        - name: traefik-forward-auth
+          image: thomseddon/traefik-forward-auth:2
+          ports:
+          - containerPort: 4181
+            protocol: TCP
+            name: http
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "10m"
+            limits:
+              memory: "100Mi"
+              cpu: "50m"
+          env:
+          # - name: DOMAIN
+          #   value: "theleachfamily.me.uk"
+          - name: COOKIE_DOMAIN
+            value: "theleachfamily.me.uk"
+          - name: AUTH_HOST
+            value: "auth.net.theleachfamily.me.uk"
+          - name: DEFAULT_PROVIDER
+            value: "oidc"
+          - name: LOG_LEVEL
+            value: "debug"
+          - name: PROVIDERS_OIDC_ISSUER_URL
+            valueFrom:
+              secretKeyRef:
+                name: traefik-forward-auth
+                key: ISSUER_URL
+          - name: PROVIDERS_OIDC_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: traefik-forward-auth
+                key: CLIENT_ID
+          - name: PROVIDERS_OIDC_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: traefik-forward-auth
+                key: CLIENT_SECRET
+          - name: SECRET
+            valueFrom:
+              secretKeyRef:
+                name: traefik-forward-auth
+                key: SECRET
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 30
+          #   timeoutSeconds: 10
+          #   failureThreshold: 5
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 30
+          #   timeoutSeconds: 10
+          #   failureThreshold: 5

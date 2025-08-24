@@ -7,7 +7,7 @@ spec:
   project: infrastructure
   sources:
     - repoURL: 'https://argoproj.github.io/argo-helm'
-      targetRevision: 7.7.*
+      targetRevision: 8.3.*
       chart: argo-cd
       helm:
         valuesObject:
@@ -17,14 +17,15 @@ spec:
               dex.config: |
                 connectors:
                 - config:
-                    issuer: https://auth.theleachfamily.me.uk/application/o/ln-argocd/
-                    clientID: 3tZX0LULt01gxYFSn8PC62sgltUbPe2tdJPUyf3j
+                    issuer: https://id.duck.moe
+                    clientID: 34b6be42-3bd5-4d82-ade9-3a7f4e097e06
                     clientSecret: $oidc.identiduck.clientSecret
                     insecureEnableGroups: true
                     scopes:
                       - openid
                       - profile
                       - email
+                      - groups
                   name: identiduck.
                   type: oidc
                   id: ducknet
@@ -34,7 +35,7 @@ spec:
               controller.diff.server.side: "true"
             rbac:
               policy.csv: |
-                g, Number 10 Superop, role:admin
+                g, leachnet_ops, role:admin
             secret:
               createSecret: false
           server:

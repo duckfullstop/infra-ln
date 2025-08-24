@@ -24,7 +24,7 @@ spec:
               enabled: true
               annotations:
                 cert-manager.io/cluster-issuer: letsencrypt-http-prod
-                traefik.ingress.kubernetes.io/router.middlewares: identity-system-ak-outpost-leachnet-proxy-outpost@kubernetescrd
+                traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth@kubernetescrd
           metrics:
             prometheus:
               entryPoint: metrics

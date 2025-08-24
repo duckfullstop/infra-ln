@@ -11,3 +11,4 @@ resources:
   - minio
   - sealed-secrets
   - traefik
+  - traefik-forward-auth

@@ -22,7 +22,7 @@ spec:
               enabled: true
               annotations:
                 cert-manager.io/cluster-issuer: letsencrypt-http-prod
-                traefik.ingress.kubernetes.io/router.middlewares: identity-system-ak-outpost-leachnet-proxy-outpost@kubernetescrd
+                traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth@kubernetescrd
               hosts:
                 - alertmanager.prometheus.net.theleachfamily.me.uk
               pathType: ImplementationSpecific
@@ -61,15 +61,15 @@ spec:
               auth:
                 oauth_allow_insecure_email_lookup: "true"
               auth.generic_oauth:
-                name: leachnet.
+                name: identiduck.
                 enabled: true
-                scopes: openid email profile
+                scopes: openid email profile groups
                 client_id: $__file{/etc/secrets/grafanaOauthClientId}
                 client_secret: $__file{/etc/secrets/grafanaOauthClientSecret}
-                auth_url: https://auth.theleachfamily.me.uk/application/o/authorize/
-                token_url: https://auth.theleachfamily.me.uk/application/o/token/
-                api_url: https://auth.theleachfamily.me.uk/application/o/userinfo/
-                role_attribute_path: contains(groups[*], 'Number 10 Superop') && 'Admin' ||  contains(groups[*], 'Number 10 Operator') && 'Editor' || 'Viewer'
+                auth_url: https://id.duck.moe/authorize
+                token_url: https://id.duck.moe/api/oidc/token
+                api_url: https://id.duck.moe/api/oidc/userinfo
+                role_attribute_path: contains(groups[*], 'leachnet_op') && 'Admin' ||  contains(groups[*], 'leachnet') && 'Editor' || 'Viewer'
               feature_toggles:
                 enable: "nestedFolders publicDashboards correlations"
             ingress:
@@ -137,7 +137,7 @@ spec:
               enabled: true
               annotations:
                 cert-manager.io/cluster-issuer: "letsencrypt-http-prod"
-                traefik.ingress.kubernetes.io/router.middlewares: identity-system-ak-outpost-leachnet-proxy-outpost@kubernetescrd
+                traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth@kubernetescrd
               hosts:
                 - prometheus.net.theleachfamily.me.uk
               pathType: ImplementationSpecific
