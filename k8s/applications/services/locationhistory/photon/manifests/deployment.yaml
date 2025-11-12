@@ -29,6 +29,11 @@ spec:
           - containerPort: 2322
             protocol: TCP
             name: http
+          env:
+            - name: UPDATE_STRATEGY
+              value: "PARALLEL"
+            - name: UPDATE_INTERVAL
+              value: "30d"
           # resources:
           #  requests:
           #     memory: "50Mi"
@@ -38,7 +43,7 @@ spec:
           #     cpu: "1"
           volumeMounts:
           - name: data
-            mountPath: /photon/photon_data
+            mountPath: /photon/data
       volumes:
       - name: data
         persistentVolumeClaim:

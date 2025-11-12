@@ -12,12 +12,12 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/hypervault/downloads/duck/torrents/complete"
+    path: "/mnt/decavault/downloads/duck/torrents/complete"
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: vault-media-pvr
+  name: nsmedia-vault-media-pvr
   labels:
     type: local
 spec:
@@ -28,12 +28,12 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/hypervault/media/pvr"
+    path: "/mnt/decavault/media/pvr"
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: vault-media-video
+  name: nsmedia-vault-media-video
   labels:
     type: local
 spec:
@@ -44,12 +44,12 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/hypervault/media/video"
+    path: "/mnt/decavault/media/video"
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: vault-media-music
+  name: nsmedia-vault-media-music
   labels:
     type: local
 spec:
@@ -60,39 +60,7 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/hypervault/media/video"
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: demivault-media-music
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 1Ti
-  accessModes:
-    - ReadWriteMany
-  nfs:
-    server: "vault.leachnet"
-    path: "/mnt/demivault/media/music"
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: demivault-media-video
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 1Ti
-  accessModes:
-    - ReadWriteMany
-  nfs:
-    server: "vault.leachnet"
-    path: "/mnt/demivault/media/video"
+    path: "/mnt/decavault/media/video"
 ---
 apiVersion: v1
 kind: PersistentVolume

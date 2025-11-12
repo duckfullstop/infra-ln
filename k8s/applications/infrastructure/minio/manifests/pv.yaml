@@ -12,7 +12,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/hypervault/k8s/minio"
+    path: "/mnt/decavault/services/minio"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

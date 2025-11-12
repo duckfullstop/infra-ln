@@ -22,7 +22,7 @@ spec:
     requests:
       storage: 1Ti
   storageClassName: "manual"
-  volumeName: "vault-media-pvr"
+  volumeName: "nsmedia-vault-media-pvr"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -35,7 +35,7 @@ spec:
     requests:
       storage: 1Ti
   storageClassName: "manual"
-  volumeName: "vault-media-video"
+  volumeName: "nsmedia-vault-media-video"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -48,33 +48,7 @@ spec:
     requests:
       storage: 1Ti
   storageClassName: "manual"
-  volumeName: "vault-media-music"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: plex-demivault-media-music
-spec:
-  accessModes:
-  - ReadWriteMany
-  resources:
-    requests:
-      storage: 1Ti
-  storageClassName: "manual"
-  volumeName: "demivault-media-music"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: plex-demivault-media-video
-spec:
-  accessModes:
-  - ReadWriteMany
-  resources:
-    requests:
-      storage: 1Ti
-  storageClassName: "manual"
-  volumeName: "demivault-media-video"
+  volumeName: "nsmedia-vault-media-music"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

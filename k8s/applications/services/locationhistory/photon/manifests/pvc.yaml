@@ -2,11 +2,12 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: photon-data
-  namespace: homeautomation
+  namespace: locationhistory
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
-      storage: 150Gi
-  storageClassName: "vault-fast-nfs" # TBC, this may be too much data for fast
+      storage: 300Gi
+  storageClassName: "manual"
+  volumeName: "nslocationhistory-services-photon"

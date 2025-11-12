@@ -5,5 +5,6 @@ namespace: locationhistory
 
 resources:
 - deployment.yaml
+- pv.yaml
 - pvc.yaml
 - service.yaml

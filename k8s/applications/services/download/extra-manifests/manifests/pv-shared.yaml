@@ -10,7 +10,7 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/hypervault/downloads/duck/torrents"
+    path: "/mnt/decavault/downloads/duck/torrents"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -24,7 +24,7 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/hypervault/downloads/duck/torrents/complete"
+    path: "/mnt/decavault/downloads/duck/torrents/complete"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -38,7 +38,7 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/hypervault/downloads/duck/torrents/complete/deduplicate"
+    path: "/mnt/decavault/downloads/duck/torrents/complete/deduplicate"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -52,4 +52,4 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/hypervault/downloads/duck/torrents/downloading"
+    path: "/mnt/decavault/downloads/duck/torrents/downloading"
