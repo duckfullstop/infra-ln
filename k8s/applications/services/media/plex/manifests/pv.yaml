@@ -17,22 +17,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nsmedia-vault-media-pvr
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 1Ti
-  accessModes:
-    - ReadWriteMany
-  nfs:
-    server: "vault.leachnet"
-    path: "/mnt/decavault/media/pvr"
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
   name: nsmedia-vault-media-video
   labels:
     type: local
@@ -60,7 +44,7 @@ spec:
     - ReadWriteMany
   nfs:
     server: "vault.leachnet"
-    path: "/mnt/decavault/media/video"
+    path: "/mnt/decavault/media/music"
 ---
 apiVersion: v1
 kind: PersistentVolume
