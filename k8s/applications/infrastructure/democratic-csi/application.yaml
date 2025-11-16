@@ -51,6 +51,9 @@ spec:
               
               # Backfilled from secret
 
+          node:
+            kubeletHostPath: /var/lib/kubernetes
+
     - repoURL: 'https://github.com/duckfullstop/infra-ln/'
       path: k8s/applications/infrastructure/democratic-csi/manifests
       targetRevision: main
