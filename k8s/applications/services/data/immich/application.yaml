@@ -11,27 +11,31 @@ spec:
       targetRevision: "0.10.*"
       helm:
         valuesObject:
-        controllers:
-          main:
-            containers:
-              main:
-                image:
-                  tag: v2.0.0
-          env:
-            DB_HOSTNAME: "immich-rw.data.svc.cluster.local"
-            DB_USERNAME: "immich"
-            DB_PASSWORD: 
-              valueFrom:
-                secretKeyRef:
-                    name: immich-postgres
-                    key: password
-                    optional: false
+          controllers:
+            main:
+              containers:
+                main:
+                  image:
+                    tag: v2.0.0
+              env:
+                REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
+                IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+                DB_URL: 
+                  valueFrom:
+                      secretKeyRef:
+                          name: immich-app
+                          namespace: database
+                          key: uri
+                          optional: false
           immich:
             metrics:
               enabled: true
             persistence:
               library:
                 existingClaim: immich-data
+            service:
+              main:
+                ipFamilyPolicy: PreferDualStack
           valkey:
             enabled: true
             controllers:
@@ -49,6 +53,9 @@ spec:
                 type: emptyDir
                 accessMode: ReadWriteOnce
                 # storageClass: your-class
+            service:
+              main:
+                ipFamilyPolicy: PreferDualStack
           server:
             enabled: true
             ingress:
@@ -65,6 +72,9 @@ spec:
                   - hosts:
                       - immich.theleachfamily.me.uk
                     secretName: "immich-cert"
+              service:
+                main:
+                  ipFamilyPolicy: PreferDualStack
           
     - repoURL: 'https://github.com/duckfullstop/infra-ln'
       path: k8s/applications/services/data/immich/manifests
