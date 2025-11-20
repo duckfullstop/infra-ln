@@ -16,17 +16,16 @@ spec:
               containers:
                 main:
                   image:
-                    tag: v2.0.0
-              env:
-                REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
-                IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
-                DB_URL: 
-                  valueFrom:
-                      secretKeyRef:
-                          name: immich-app
-                          namespace: database
-                          key: uri
-                          optional: false
+                    tag: v2.3.0
+                  env:
+                    REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
+                    IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+                    DB_URL: 
+                      valueFrom:
+                          secretKeyRef:
+                              name: immich-app
+                              key: uri
+                              optional: false
           immich:
             metrics:
               enabled: true
@@ -72,10 +71,7 @@ spec:
                   - hosts:
                       - immich.theleachfamily.me.uk
                     secretName: "immich-cert"
-              service:
-                main:
-                  ipFamilyPolicy: PreferDualStack
-          
+        
     - repoURL: 'https://github.com/duckfullstop/infra-ln'
       path: k8s/applications/services/data/immich/manifests
       targetRevision: main
