@@ -67,12 +67,13 @@ spec:
               existingSecretKey: "push-key"
             relayUri: "https://api.bitwarden.eu"
             identityUri: "https://identity.bitwarden.eu"
-          data:
-            enabled: true
-            name: "vaultwarden-data"
-            size: 1Gi
-            class: "vault-fast-nfs"
-            keepPvc: true
+          storage:
+            data:
+              enabled: true
+              name: "vaultwarden-data"
+              size: 1Gi
+              class: "vault-fast-nfs"
+              keepPvc: true
     - repoURL: 'https://github.com/duckfullstop/infra-ln'
       path: k8s/applications/services/data/vaultwarden/manifests
       targetRevision: main
