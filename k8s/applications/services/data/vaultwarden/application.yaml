@@ -15,6 +15,18 @@ spec:
             registry: "ghcr.io"
             repository: "dani-garcia/vaultwarden"
             tag: "1.35.1-alpine"
+            extraVars:
+              - key: SSO_ENABLED
+                value: true
+              - key: SSO_AUTHORITY
+                value: https://id.duck.moe
+              - key: SSO_SCOPES
+                value: "email profile groups offline_access"
+            extraSecrets:
+              - key: SSO_CLIENT_ID
+                value: sso-id
+              - key: SSO_CLIENT_SECRET
+                value: sso-key
           domain: https://bitwarden.theleachfamily.me.uk
           invitationOrgName: "leachnet."
           signupsAllowed: false
