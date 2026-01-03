@@ -24,9 +24,7 @@ spec:
                 value: "email profile groups offline_access"
             extraSecrets:
               - key: SSO_CLIENT_ID
-                value: sso-id
               - key: SSO_CLIENT_SECRET
-                value: sso-key
           domain: https://bitwarden.theleachfamily.me.uk
           invitationOrgName: "leachnet."
           signupsAllowed: false
@@ -74,6 +72,7 @@ spec:
               size: 1Gi
               class: "vault-fast-nfs"
               keepPvc: true
+              accessModes: 
     - repoURL: 'https://github.com/duckfullstop/infra-ln'
       path: k8s/applications/services/data/vaultwarden/manifests
       targetRevision: main
