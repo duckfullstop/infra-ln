@@ -8,9 +8,13 @@ spec:
   sources:
     - repoURL: 'https://guerzon.github.io/vaultwarden'
       chart: vaultwarden
-      targetRevision: "0.28.*"
+      targetRevision: "0.34.*"
       helm:
         valuesObject:
+          image:
+            registry: "ghcr.io"
+            repository: "dani-garcia/vaultwarden"
+            tag: "1.35.1-alpine"
           domain: https://bitwarden.theleachfamily.me.uk
           invitationOrgName: "leachnet."
           signupsAllowed: false
@@ -42,6 +46,15 @@ spec:
             pathType: ImplementationSpecific
             tls: true
             tlsSecret: "vaultwarden-cert"
+          pushNotifications:
+            enabled: true
+            existingSecret: "vaultwarden"
+            installationId:
+              existingSecretKey: "push-id"
+            installationKey:
+              existingSecretKey: "push-key"
+            relayUri: "https://api.bitwarden.eu"
+            identityUri: "https://identity.bitwarden.eu"
           data:
             enabled: true
             name: "vaultwarden-data"
