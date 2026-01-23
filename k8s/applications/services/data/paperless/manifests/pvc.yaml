@@ -10,3 +10,16 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: vault-fast-nfs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-consume
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: manual
+  volumeName: paperless-consume

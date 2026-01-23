@@ -72,12 +72,18 @@ spec:
               secretKeyRef:
                 name: paperless
                 key: adminPassword
+          - name: PAPERLESS_CONSUMER_POLLING
+            value: "5"
           - name: PAPERLESS_CONSUMER_ENABLE_BARCODES
             value: "true"
           - name: PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE
             value: "true"
           - name: PAPERLESS_CONSUMER_BARCODE_SCANNER
             value: "ZXING"
+          - name: PAPERLESS_CONSUMER_BARCODE_UPSCALE
+            value: "1.2"
+          - name: PAPERLESS_CONSUMER_BARCODE_DPI
+            value: "600"
           - name: PAPERLESS_APPS
             value: "allauth.socialaccount.providers.openid_connect"
           - name: PAPERLESS_SOCIALACCOUNT_PROVIDERS
@@ -121,4 +127,5 @@ spec:
       - name: export
         emptyDir: 
       - name: consume
-        emptyDir: 
+        persistentVolumeClaim:
+          claimName: paperless-consume

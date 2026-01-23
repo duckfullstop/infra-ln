@@ -3,5 +3,6 @@ resources:
 - deployment-backing.yaml
 - service.yaml
 - ingress.yaml
+- pv.yaml
 - pvc.yaml
 - secret.yaml
