@@ -1,4 +1,4 @@
 resources:
 - extra-manifests
-- flood
 - qbittorrent
+- qui

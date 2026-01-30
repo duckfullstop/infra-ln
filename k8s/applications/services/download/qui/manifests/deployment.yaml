@@ -1,52 +1,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flood
+  name: qui
   labels:
-    app: flood
+    app.kubernetes.io/name: qui
+    app.kubernetes.io/part-of: qbittorrent
 spec:
   selector:
     matchLabels:
-      app: flood
+      app.kubernetes.io/name: qui
   template:
     metadata:
       labels:
-        app: flood
+        app.kubernetes.io/name: qui
     spec:
       containers:
-      - image: jesec/flood:4.8.4
-        name: flood
+      - image: ghcr.io/autobrr/qui:latest
+        name: qui
         resources:
-            requests:
-              memory: "10Mi"
-              cpu: "50m"
-            limits:
-              memory: "200Mi"
-              cpu: "500m"
-        args:
-          # FLOOD_OPTION_host doesn't work for some reason
-          - "--host=::"
+          requests:
+            memory: "50Mi"
+            cpu: "50m"
+          limits:
+            memory: "500Mi"
+            cpu: "1"
         env:
-        - name: FLOOD_OPTION_port
-          value: "3001"
-        - name: FLOOD_OPTION_auth
-          value: "none"
-        - name: FLOOD_OPTION_qburl
-          value: "http://qbittorrent-web.download.svc.cluster.local:8080"
-        - name: FLOOD_OPTION_qbuser
+        # - name: QUI__DATA_DIR
+        #   value: "/downloads"
+        - name: QUI__SESSION_SECRET_FILE
+          value: "/secret/session_secret"
+        - name: QUI__OIDC_ENABLED
+          value: "true"
+        - name: QUI__OIDC_ISSUER
+          value: "https://id.duck.moe"
+        - name: QUI__OIDC_REDIRECT_URL
+          value: "https://qbt.net.theleachfamily.me.uk/api/auth/oidc/callback"
+        - name: QUI__OIDC_CLIENT_ID
           valueFrom:
             secretKeyRef:
-              name: flood
-              key: qb_username
+              name: qui
+              key: oidc_client_id
               optional: false
-        - name: FLOOD_OPTION_qbpass
-          valueFrom:
-            secretKeyRef:
-              name: flood
-              key: qb_password
-              optional: false
+        - name: QUI__OIDC_CLIENT_SECRET_FILE
+          value: "/secret/oidc_secret"
+        - name: QUI__OIDC_DISABLE_BUILT_IN_LOGIN
+          value: "true"
         ports:
-        - containerPort: 3001
+        - containerPort: 7476
           name: http
         livenessProbe:
           httpGet:
@@ -71,6 +71,9 @@ spec:
           mountPath: /downloads/complete/deduplicate
         - name: config
           mountPath: /config
+        - name: secret
+          mountPath: "/secret"
+          readOnly: true
       volumes:
       - name: data
         persistentVolumeClaim:
@@ -86,4 +89,12 @@ spec:
           claimName: qbt-vault-downloads-duck-torrents-complete-deduplicate
       - name: config
         persistentVolumeClaim:
-          claimName: flood-config
+          claimName: qui-config
+      - name: secret
+        secret:
+          secretName: qui
+          items:
+            - key: qui_secret
+              path: session_secret
+            - key: oidc_client_secret
+              path: oidc_secret

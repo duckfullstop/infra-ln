@@ -3,23 +3,24 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-http-prod
-    traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth@kubernetescrd
-  name: flood
+  name: qui
+  labels:
+    app.kubernetes.io/name: qui
 spec:
   rules:
-  - host: flood.net.theleachfamily.me.uk
+  - host: qbt.net.theleachfamily.me.uk
     http: &http_rules
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: flood-http
+            name: qui-http
             port:
               name: http
 #  - host: flood.downloads.duck.moe
 #    http: *http_rules
   tls:
   - hosts:
-    - flood.net.theleachfamily.me.uk
-    secretName: flood-cert
+    - qbt.net.theleachfamily.me.uk
+    secretName: qui-cert
