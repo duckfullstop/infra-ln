@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mosquitto
-          image: eclipse-mosquitto:latest
+          image: eclipse-mosquitto:2-alpine
           resources:
             requests:
               memory: "50Mi"
@@ -23,6 +23,9 @@ spec:
             limits:
               memory: "100Mi"
               cpu: "200m"
+          env:
+            - name: MOSQUITTO_UNSAFE_ALLOW_SYMLINKS
+              value: "1"
           ports:
           - containerPort: 1883
             protocol: TCP
