@@ -8,15 +8,13 @@ spec:
   sources:
     - repoURL: 'ghcr.io/immich-app/immich-charts'
       chart: immich
-      targetRevision: "0.10.*"
+      targetRevision: "0.13.*"
       helm:
         valuesObject:
           controllers:
             main:
               containers:
                 main:
-                  image:
-                    tag: v2.3.0
                   env:
                     REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
                     IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
@@ -25,16 +23,15 @@ spec:
                           secretKeyRef:
                               name: immich-app
                               key: uri
-                              optional: false
           immich:
             metrics:
               enabled: true
             persistence:
               library:
                 existingClaim: immich-data
-            service:
-              main:
-                ipFamilyPolicy: PreferDualStack
+            # service:
+            #   main:
+            #     ipFamilyPolicy: PreferDualStack
           valkey:
             enabled: true
             controllers:

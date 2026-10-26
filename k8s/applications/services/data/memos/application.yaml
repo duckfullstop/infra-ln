@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: memos
+  namespace: argocd
+spec:
+  project: services
+  sources:
+    - repoURL: 'ghcr.io/helmforgedev/helm'
+      chart: memos
+      targetRevision: "2.*.*"
+      helm:
+        valuesObject:
+          memos:
+            instanceUrl: https://memos.duck.moe
+
+          ingress:
+            enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-http-prod
+              traefik.ingress.kubernetes.io/preserve-host: "true"
+            hosts:
+              - host: memos.duck.moe
+                paths:
+                  - path: /
+                    pathType: Prefix
+            tls:
+              - secretName: memos-tls
+                hosts:
+                  - memos.duck.moe
+          database:
+            driver: sqlite
+          persistence:
+            enabled: true
+            size: 20Gi
+            storageClass: "vault-fast-nfs"
+          provisioning:
+            existingSecret: memos-provisioning
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+
+          networkPolicy:
+            enabled: true
+            ingressFrom:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: kube-system
+                podSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: traefik
+    - repoURL: 'https://github.com/duckfullstop/infra-ln'
+      path: k8s/applications/services/data/memos/manifests
+      targetRevision: main        
+  destination:
+    namespace: data
+    name: leachnet
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
